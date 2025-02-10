@@ -1,12 +1,173 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwbackend\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|c:\\users\\luke\\documents\\github\\gameswikipedia\\gwbackend\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|solutionrelative:weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|c:\\users\\luke\\documents\\github\\gameswikipedia\\gwbackend\\controllers\\gamescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|solutionrelative:controllers\\gamescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|c:\\users\\luke\\documents\\github\\gameswikipedia\\gwbackend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|c:\\users\\luke\\documents\\github\\gameswikipedia\\gwbackend\\data\\gamesdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|solutionrelative:data\\gamesdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|c:\\users\\luke\\documents\\github\\gameswikipedia\\gwbackend\\data\\userdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|solutionrelative:data\\userdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|c:\\users\\luke\\documents\\github\\gameswikipedia\\gwbackend\\data\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|solutionrelative:data\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|c:\\users\\luke\\documents\\github\\gameswikipedia\\gwbackend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|c:\\users\\luke\\documents\\github\\gameswikipedia\\gwbackend\\extensions\\migrationextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|solutionrelative:extensions\\migrationextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|c:\\users\\luke\\documents\\github\\gameswikipedia\\gwbackend\\data\\models\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|solutionrelative:data\\models\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "WeatherForecast.cs",
+              "DocumentMoniker": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\WeatherForecast.cs",
+              "RelativeDocumentMoniker": "WeatherForecast.cs",
+              "ToolTip": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\WeatherForecast.cs",
+              "RelativeToolTip": "WeatherForecast.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T18:55:56.374Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MigrationExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Extensions\\MigrationExtensions.cs",
+              "RelativeDocumentMoniker": "Extensions\\MigrationExtensions.cs",
+              "ToolTip": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Extensions\\MigrationExtensions.cs",
+              "RelativeToolTip": "Extensions\\MigrationExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T15:12:53.383Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UserDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Data\\UserDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\UserDbContext.cs",
+              "ToolTip": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Data\\UserDbContext.cs",
+              "RelativeToolTip": "Data\\UserDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T14:51:15.163Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Data\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Data\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Data\\Models\\User.cs",
+              "RelativeToolTip": "Data\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T14:38:03.89Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Game.cs",
+              "DocumentMoniker": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Data\\Models\\Game.cs",
+              "RelativeDocumentMoniker": "Data\\Models\\Game.cs",
+              "ToolTip": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Data\\Models\\Game.cs",
+              "RelativeToolTip": "Data\\Models\\Game.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T14:21:32.646Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-02-09T13:28:12.437Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GamesController.cs",
+              "DocumentMoniker": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Controllers\\GamesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\GamesController.cs",
+              "ToolTip": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Controllers\\GamesController.cs",
+              "RelativeToolTip": "Controllers\\GamesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T13:20:20.08Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GamesDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Data\\GamesDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\GamesDbContext.cs",
+              "ToolTip": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Data\\GamesDbContext.cs",
+              "RelativeToolTip": "Data\\GamesDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T13:16:18.565Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAABXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T13:14:19.889Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

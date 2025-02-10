@@ -1,0 +1,6 @@
+@gwBackend_HostAddress = http://localhost:5144
+
+GET {{gwBackend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
