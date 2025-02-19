@@ -1,29 +1,46 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using gwBackend.Data;
 using gwBackend.Data.Models;
-using Microsoft.AspNetCore.Identity;
 using gwBackend.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
+
+// Games DB Context
 builder.Services.AddDbContext<GamesDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// User DB Context
+builder.Services.AddDbContext<UserDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Authorisation
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme);
 
-builder.Services.AddIdentityCore<User>()
-    .AddEntityFrameworkStores<UserDbContext>()
-    .AddApiEndpoints();
+//AddIdentityCore 
+//builder.Services.AddIdentityCore<User>()
+//    .AddEntityFrameworkStores<UserDbContext>()
+//    .AddApiEndpoints();
 
-builder.Services.AddDbContext<UserDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+// Add Identity
+builder.Services.AddIdentity<User, IdentityRole>(options =>
+{
+    options.Password.RequireDigit = true;
+    options.Password.RequiredLength = 6;
+    options.Password.RequireUppercase = true;
+    options.User.RequireUniqueEmail = true;
+})
+    .AddEntityFrameworkStores<UserDbContext>()
+    .AddApiEndpoints()
+    .AddDefaultTokenProviders();
 
 var app = builder.Build();
 
