@@ -8,6 +8,7 @@ namespace gwBackend.Data.Models
         public string Text { get; set; }
         public DateTime DateTime { get; set; }
 
+        // Foreign Keys
         public int GameId { get; set; }
         public Game Game { get; set; }
         public int UserId { get; set; }

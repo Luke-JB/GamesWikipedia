@@ -35,6 +35,67 @@ namespace gwBackend.Controllers
             return Ok(game);
         }
 
+        // Search for games
+        // GET: api/Games/search?name=GameName
+        [HttpGet("search")]
+        public async Task<ActionResult<IEnumerable<Game>>> SearchGames([FromQuery] string name, [FromQuery] string genre, [FromQuery] string developer, [FromQuery] string publisher, [FromQuery] string release, [FromQuery] bool coop, [FromQuery] bool indie, [FromQuery] string platform, [FromQuery] string director, [FromQuery] string writer, [FromQuery] string composer, [FromQuery] string description)
+        {
+            var query = _context.Games.AsQueryable();
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                query = query.Where(p => p.GameName.Contains(name));
+            }
+            if (!string.IsNullOrEmpty(genre))
+            {
+                query = query.Where(p => p.GameGenre.Contains(genre));
+            }
+            if (!string.IsNullOrEmpty(developer))
+            {
+                query = query.Where(p => p.GameDeveloper.Contains(developer));
+            }
+            if (!string.IsNullOrEmpty(publisher))
+            {
+                query = query.Where(p => p.GamePublisher.Contains(publisher));
+            }
+            if (!string.IsNullOrEmpty(release))
+            {
+                query = query.Where(p => p.GameRelease.Contains(release));
+            }
+            if (coop)
+            {
+                query = query.Where(p => p.GameCoop == coop);
+            }
+            if (indie)
+            {
+                query = query.Where(p => p.GameIndie== indie);
+            }
+            if (!string.IsNullOrEmpty(platform))
+            {
+                query = query.Where(p => p.GamePlatform.Contains(platform));
+            }
+            if (!string.IsNullOrEmpty(director))
+            {
+                query = query.Where(p => p.GameDirector.Contains(director));
+            }
+            if (!string.IsNullOrEmpty(writer))
+            {
+                query = query.Where(p => p.GameWriter.Contains(writer));
+            }
+            if (!string.IsNullOrEmpty(composer))
+            {
+                query = query.Where(p => p.GameComposer.Contains(composer));
+            }
+            if (!string.IsNullOrEmpty(description))
+            {
+                query = query.Where(p => p.GameDescription.Contains(description));
+            }
+
+            var games = await query.ToListAsync();
+
+            return Ok(games);
+        }
+
         // Post / Creates Games
         [HttpPost]
         [Route("NewGame")]

@@ -6,7 +6,7 @@ using gwBackend.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add services to the container
 builder.Services.AddControllers();
 
 // Games DB Context
@@ -21,6 +21,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<UserDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// Comments DB Context
+builder.Services.AddDbContext<CommentDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 // Authorisation
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme);
@@ -33,10 +37,16 @@ builder.Services.AddAuthentication().AddCookie(IdentityConstants.ApplicationSche
 // Add Identity
 builder.Services.AddIdentity<User, IdentityRole>(options =>
 {
+    // Password settings
     options.Password.RequireDigit = true;
     options.Password.RequiredLength = 6;
     options.Password.RequireUppercase = true;
     options.User.RequireUniqueEmail = true;
+
+    // User settings
+    options.User.AllowedUserNameCharacters =
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+    options.User.RequireUniqueEmail = false;
 })
     .AddEntityFrameworkStores<UserDbContext>()
     .AddApiEndpoints()
@@ -44,7 +54,7 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

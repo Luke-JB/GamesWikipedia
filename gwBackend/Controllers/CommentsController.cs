@@ -19,6 +19,7 @@ namespace gwBackend.Controllers
             _context = context;
         }
 
+        // Get Comments
         [HttpGet("{gameId}")]
         public async Task<ActionResult<IEnumerable<Comment>>> GetCommentsByGame(int gameId)
         {
@@ -30,6 +31,7 @@ namespace gwBackend.Controllers
             return Ok(comments);
         }
 
+        // Add Comments
         [HttpPost]
         [Authorize]
         public async Task<ActionResult<Comment>> AddComment(CommentDto commentDto)
@@ -52,12 +54,27 @@ namespace gwBackend.Controllers
             return CreatedAtAction(nameof(GetCommentsByGame), new { gameId = comment.GameId }, comment);
         }
 
-        [HttpPut]
-        public async Task<ActionResult<Comment>> UpdateComment()
+        // Update Comments
+        [HttpPut("{gameId}")]
+        public async Task<ActionResult<Comment>> UpdateComment(int gameId, [FromBody] CommentDto commentDto)
         {
+            var existingText = await _context.Comments.FindAsync(gameId);
+            _context.Entry(gameId).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
 
+            return NoContent();
         }
 
-        [HttpDelete]
+        // Delete Comments
+        [HttpDelete("{gameId}")]
+        public async Task<ActionResult<Comment>> DeleteGame(int gameId, [FromBody] CommentDto commentDto)
+        {
+            var comment = await _context.Comments.FindAsync(gameId);
+            _context.Comments.Remove(comment);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+
+        }
     }
 }
