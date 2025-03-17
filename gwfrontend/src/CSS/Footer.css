@@ -1,0 +1,47 @@
+footer {
+    font-family: Helvetica, Arial, sans-serif;
+    width: 100%;
+    background-color: #0a2c47;
+    color: white;
+}
+.footerClass {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    padding-left: 25%;
+    background-color: #0a2c47;
+    padding-right: 25%;
+}
+.footerLogo {
+    display: flex;
+    align-items: center; /* Aligns logo and title vertically */
+}
+
+/* Logo styling */
+#logo {
+    width: 100px;
+    height: auto; /* Maintain the aspect ratio */
+    margin-right: 10px; /* Adds space between the logo and the title */
+    justify-content: flex-start;
+}
+.footerLinks {
+    display: flex;
+    justify-content: center;
+}
+
+.footerLinks ul li {
+    padding: 3px;
+}
+
+.footerSocial {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+#copywright {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    color: white;
+    width: 100%;
+}

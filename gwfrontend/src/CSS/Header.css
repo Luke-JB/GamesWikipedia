@@ -1,0 +1,182 @@
+header {
+    font-family: Helvetica, Arial, sans-serif;
+    width: auto;
+}
+.HeaderClass {
+    display: flex;
+    justify-content: space-around; /* Ensures space between the left and right sections */
+    align-items: center; /* Aligns items vertically in the center */
+    padding: 5px 10px;
+    background-color: #0a2c47;
+    color: white;
+}
+
+.headerWrapper {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Wrapper for the logo and title */
+.headerLogo {
+    display: flex;
+    align-items: center; /* Aligns logo and title vertically */
+}
+
+/* Logo styling */
+#logo {
+    width: 100px;
+    height: auto; /* Maintain the aspect ratio */
+    margin-right: 10px; /* Adds space between the logo and the title */
+}
+
+/* Title styling */
+.headerLogo h1 {
+    display: none;
+}
+.headerNavWrapper{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: auto;
+}
+
+/* Navigation wrapper */
+.headerNavWrapper nav {
+    position: relative;
+    background-color: #0a2c47;
+    padding: 3.5em;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+/* Navigation bar styling */
+.headerNav menu {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background-color: #0a2c47;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin: 0;
+}
+.headerNav menu.active {
+    max-height: 300px;
+    z-index: 1;
+}
+
+/* Individual navigation links */
+.headerNav menu li {
+    margin-left: 20px; /* Adds spacing between the links */
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.headerNav menu li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.headerNav menu li a:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
+.burger {
+    display: block;
+    font-size: 1.5em;
+    color: white;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+/* Desktop breakpoint */
+@media (min-width: 768px) {
+
+    /* Hide burger icon on desktop */
+    .burger {
+        display: none;
+    }
+
+    .HeaderClass {
+        display: flex;
+        justify-content: space-between; /* Ensures space between the left and right sections */
+        align-items: center; /* Aligns items vertically in the center */
+        padding: 10px 20px;
+        background-color: #0a2c47;
+        color: white;
+    }
+    
+    .headerWrapper {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+    
+    /* Wrapper for the logo and title */
+    .headerLogo {
+        display: flex;
+        align-items: center; /* Aligns logo and title vertically */
+    }
+    .headerLogo h1 {
+        display: flex;
+    }
+    
+    /* Logo styling */
+    #logo {
+        width: 100%;
+        height: 100%; /* Maintain the aspect ratio */
+        margin-right: 10px; /* Adds space between the logo and the title */
+    }
+    
+    /* Title styling */
+    .headerLogo h1 {
+        font-size: 2.5rem;
+        color: #ffffff;
+        margin: 0;
+    }
+    .headerNavWrapper {
+        display: flex;
+        align-items: center;
+        height: auto;
+    }
+    
+    /* Navigation wrapper */
+    .headerNavWrapper nav {
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    /* Navigation bar styling */
+    .headerNav menu {
+        display: flex;
+        flex-direction: row;
+        gap: 1em;
+        position: static;
+        /* Align menu within the nav */
+        max-height: none;
+    }
+    
+    /* Individual navigation links */
+    .headerNav menu li {
+        margin-left: 20px; /* Adds spacing between the links */
+    }
+    
+    .headerNav menu li a {
+        text-decoration: none;
+        color: #ffffff;
+        font-weight: bold;
+        
+    }
+    
+    .headerNav menu li a:hover {
+        color: #007bff;
+        text-decoration: underline;
+    }
+}

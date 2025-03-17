@@ -1,0 +1,11 @@
+.newWikisWrapper {
+    padding-bottom: 50px;
+    background-color: rgb(6, 3, 24);
+}
+.newWikisTitle {
+    display: flex;
+    justify-content: center;
+}
+.newWikis{
+    padding: 5px;
+}
