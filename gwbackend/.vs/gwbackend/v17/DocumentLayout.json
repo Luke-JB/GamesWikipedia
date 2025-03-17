@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|c:\\users\\luke\\documents\\github\\gameswikipedia\\gwbackend\\data\\dto\\gamedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|solutionrelative:data\\dto\\gamedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|c:\\users\\luke\\documents\\github\\gameswikipedia\\gwbackend\\controllers\\gamescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|solutionrelative:controllers\\gamescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|c:\\users\\luke\\documents\\github\\gameswikipedia\\gwbackend\\data\\dto\\newuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|solutionrelative:data\\dto\\newuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|c:\\users\\luke\\documents\\github\\gameswikipedia\\gwbackend\\data\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|solutionrelative:data\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|c:\\users\\luke\\documents\\github\\gameswikipedia\\gwbackend\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -19,20 +31,12 @@
       "RelativeMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|solutionrelative:data\\userdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|c:\\users\\luke\\documents\\github\\gameswikipedia\\gwbackend\\data\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|solutionrelative:data\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|c:\\users\\luke\\documents\\github\\gameswikipedia\\gwbackend\\data\\models\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|solutionrelative:data\\models\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|c:\\users\\luke\\documents\\github\\gameswikipedia\\gwbackend\\data\\dto\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|solutionrelative:data\\dto\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|c:\\users\\luke\\documents\\github\\gameswikipedia\\gwbackend\\data\\dto\\gamedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|solutionrelative:data\\dto\\gamedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|c:\\users\\luke\\documents\\github\\gameswikipedia\\gwbackend\\controllers\\commentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -59,10 +63,6 @@
       "RelativeMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|solutionrelative:data\\models\\comment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|c:\\users\\luke\\documents\\github\\gameswikipedia\\gwbackend\\data\\dto\\newuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|solutionrelative:data\\dto\\newuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|c:\\users\\luke\\documents\\github\\gameswikipedia\\gwbackend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{21EFF8DB-42B0-4234-A9A6-597671118C4E}|gwBackend.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
@@ -74,11 +74,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "CommentsController.cs",
               "DocumentMoniker": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Controllers\\CommentsController.cs",
               "RelativeDocumentMoniker": "Controllers\\CommentsController.cs",
@@ -86,12 +86,11 @@
               "RelativeToolTip": "Controllers\\CommentsController.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAAEkAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-19T10:25:22.133Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-19T10:25:22.133Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "LoginDto.cs",
               "DocumentMoniker": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Data\\DTO\\LoginDto.cs",
               "RelativeDocumentMoniker": "Data\\DTO\\LoginDto.cs",
@@ -99,12 +98,11 @@
               "RelativeToolTip": "Data\\DTO\\LoginDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-12T14:04:48.043Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-12T14:04:48.043Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 2,
               "Title": "NewUserDto.cs",
               "DocumentMoniker": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Data\\DTO\\NewUserDto.cs",
               "RelativeDocumentMoniker": "Data\\DTO\\NewUserDto.cs",
@@ -112,24 +110,24 @@
               "RelativeToolTip": "Data\\DTO\\NewUserDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-12T13:27:39.545Z"
+              "WhenOpened": "2025-02-12T13:27:39.545Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Data\\Models\\User.cs",
               "RelativeDocumentMoniker": "Data\\Models\\User.cs",
               "ToolTip": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Data\\Models\\User.cs",
               "RelativeToolTip": "Data\\Models\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-09T14:38:03.89Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-09T14:38:03.89Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "GamesController.cs",
               "DocumentMoniker": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Controllers\\GamesController.cs",
               "RelativeDocumentMoniker": "Controllers\\GamesController.cs",
@@ -142,7 +140,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "Game.cs",
               "DocumentMoniker": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Data\\Models\\Game.cs",
               "RelativeDocumentMoniker": "Data\\Models\\Game.cs",
@@ -150,12 +148,11 @@
               "RelativeToolTip": "Data\\Models\\Game.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-09T14:21:32.646Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-09T14:21:32.646Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Controllers\\UserController.cs",
@@ -163,25 +160,24 @@
               "RelativeToolTip": "Controllers\\UserController.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAABwAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-12T10:21:43.173Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-12T10:21:43.173Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
               "Title": "GameDto.cs",
               "DocumentMoniker": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Data\\DTO\\GameDto.cs",
               "RelativeDocumentMoniker": "Data\\DTO\\GameDto.cs",
               "ToolTip": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Data\\DTO\\GameDto.cs",
               "RelativeToolTip": "Data\\DTO\\GameDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-13T10:05:02.15Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -189,12 +185,11 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADgAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-09T13:14:19.889Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-09T13:14:19.889Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "CommentDto.cs",
               "DocumentMoniker": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Data\\DTO\\CommentDto.cs",
               "RelativeDocumentMoniker": "Data\\DTO\\CommentDto.cs",
@@ -206,7 +201,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "CommentDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Data\\CommentDbContext.cs",
               "RelativeDocumentMoniker": "Data\\CommentDbContext.cs",
@@ -218,7 +213,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "GamesDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Data\\GamesDbContext.cs",
               "RelativeDocumentMoniker": "Data\\GamesDbContext.cs",
@@ -230,7 +225,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "UserDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Data\\UserDbContext.cs",
               "RelativeDocumentMoniker": "Data\\UserDbContext.cs",
@@ -238,12 +233,11 @@
               "RelativeToolTip": "Data\\UserDbContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-09T14:51:15.163Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-09T14:51:15.163Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "MigrationExtensions.cs",
               "DocumentMoniker": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Extensions\\MigrationExtensions.cs",
               "RelativeDocumentMoniker": "Extensions\\MigrationExtensions.cs",
@@ -251,12 +245,11 @@
               "RelativeToolTip": "Extensions\\MigrationExtensions.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-09T15:12:53.383Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-09T15:12:53.383Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "Comment.cs",
               "DocumentMoniker": "C:\\Users\\Luke\\Documents\\GitHub\\GamesWikipedia\\gwBackend\\Data\\Models\\Comment.cs",
               "RelativeDocumentMoniker": "Data\\Models\\Comment.cs",
