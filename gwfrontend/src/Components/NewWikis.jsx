@@ -4,6 +4,7 @@ import NewWikiArticle from './NewWikiArticle'
 import axios from 'axios';
 
 const NewWikis = () => {
+    /*
     const [articles, setArticles] = useState([]);
 
     useEffect(() => {
@@ -14,14 +15,8 @@ const NewWikis = () => {
             console.error('error fetching data:', error);
         });
     }, []);
-
-    return (
-        <div className="newWikisWrapper">
-            <div className="newWikisTitle">
-                <h3>New Wikis</h3>
-            </div>
-            <div className="newWikis">
-                {articles.length > 0 ? (articles.map(article => (
+    
+                    {articles.length > 0 ? (articles.map(article => (
                     <article
                     key={NewWikiArticle.GameId}
                     image={NewWikiArticle.GameImage}
@@ -30,6 +25,14 @@ const NewWikis = () => {
                 ))) : (
                     <p>Loading articles...</p>
                   )}
+    */
+
+    return (
+        <div className="newWikisWrapper">
+            <div className="newWikisTitle">
+                <h3>New Wikis</h3>
+            </div>
+            <div className="newWikis">
             </div>
         </div>
     );
