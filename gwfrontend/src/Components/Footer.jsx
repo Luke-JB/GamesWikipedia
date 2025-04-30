@@ -8,7 +8,7 @@ const Footer = () => {
         <footer>
             <div className="footerClass">
                 <div className="footerLogo">
-                    <img src={logo} id="logo" alt="logo"></img>
+                    <img src={logo} id="logo" alt="logo"/>
                 </div>
                 <div className="footerLinks">
                     <ul>
@@ -16,7 +16,6 @@ const Footer = () => {
                         <li>Games</li>
                         <li>Terms</li>
                         <li>Rules</li>
-                        <li></li>
                     </ul>
                 </div>
                 <div className="footerSocial">

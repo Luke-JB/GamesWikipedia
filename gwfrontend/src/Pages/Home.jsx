@@ -5,11 +5,12 @@ import NewWikis from '../Components/NewWikis.jsx';
 import '../CSS/Home.css';
 import Footer from "../Components/Footer.jsx";
 import logo from "../Images/LogoDraft1.png";
+import { Link } from "react-router";
 
-const Home = () => {
+const Home = ({ isLoggedIn }) => {
     return (
         <div>
-            <Header />
+            
             <main>
                 <div className="homeWrapper">
                     <div className="homeAbout">
@@ -24,6 +25,14 @@ const Home = () => {
                     </div>
                     <div className="homeNewWikis">
                         <NewWikis />
+                    </div>
+                    <div className="homeAddWiki">
+                        <h3>Add New Game Wikis</h3>
+                        {isLoggedIn && (
+                            <section className="homeAddWikiButton">
+                                <Link to="/GameAdd" className="button">Add Game Wiki</Link>
+                            </section>
+                        )}
                     </div>
                 </div>
             </main>

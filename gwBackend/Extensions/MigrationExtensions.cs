@@ -9,7 +9,7 @@ namespace gwBackend.Extensions
         {
             using IServiceScope scope = app.ApplicationServices.CreateScope();
 
-            using UserDbContext context = scope.ServiceProvider.GetRequiredService<UserDbContext>();
+            using AppDbContext context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
             context.Database.Migrate();
         }

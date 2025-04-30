@@ -7,11 +7,11 @@ namespace gwBackend.Data
 {
     public class CommentDbContext : DbContext
     {
-        public CommentDbContext(DbContextOptions<CommentDbContext> options)
-            : base(options)
+        public CommentDbContext(DbContextOptions<CommentDbContext> options) : base(options)
         {
         }
 
         public DbSet<Comment> Comments { get; set; }
+
     }
 }

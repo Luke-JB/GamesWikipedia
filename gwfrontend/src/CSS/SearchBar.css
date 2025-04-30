@@ -3,7 +3,7 @@
     align-items: center; 
 }
 
-input[type=text] {
+.searchBarWrappper input[type=text] {
     width: 70%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -15,11 +15,11 @@ input[type=text] {
     font-size: 20px;
 }
 
-input[type=text]:focus {
+.searchBarWrappper input[type=text]:focus {
     background-color: #050141;
 }
 
-input[type=submit] {
+.searchBarWrappper input[type=submit] {
     width: 25%;
     background-color: #020027;
     color: white;
@@ -32,12 +32,12 @@ input[type=submit] {
     font-size: 20px;
 }
 
-input[type=submit]:hover {
+.searchBarWrappper input[type=submit]:hover {
     background-color: #4e49b1;
 }
 
 @media (min-width: 768px) {
-    input[type=text] {
+    .searchBarWrappper input[type=text] {
         width: 70%;
         padding: 12px 300px;
         margin: 8px 0;

@@ -1,20 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../Components/Header.jsx";
 import Footer from "../Components/Footer.jsx";
+import '../CSS/Login.css';
+import { loginUser } from "../api/api.jsx"; 
+import { useNavigate } from "react-router";
 
-const Login = () => {
+const Login = ({ setIsLoggedIn }) => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [rememberMe, setRememberMe] = useState(false)
+    const navigate = useNavigate();
+
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        
+        try {
+            const res = await loginUser({ userName: username, password, rememberMe });
+            setIsLoggedIn(true)
+            localStorage.setItem('authToken', 'some-token');
+            alert("Login successful"); // "Login successful"
+            navigate('/'); // Redirect to the homepage
+        } 
+        catch (err) {
+            alert('Login failed');
+            console.error(err);
+        }
+    };
+
     return (
         <div>
-            <Header />
+            
             <main>
-                <h2></h2>
-                <form className="loginForm">
-                    <label htmlFor="username">Username: </label>
-                    <input type="text" id="username" name="username"></input>
-                    <label htmlFor="password">Password: </label>
-                    <input type="text" id="password" name="password"></input>
-                    <input type="submit" value="Submit"></input>
-                </form>
+                <div className="LoginWrapper">
+                    <div className="loginTitle">
+                        <h2>Login</h2>
+                    </div>
+                    <div className="loginFormWrapper">
+                        <form className="loginForm" onSubmit={handleSubmit}>
+                            <label htmlFor="username">Username: </label>
+                            <input type="text" id="username" name="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                            <label htmlFor="password">Password: </label>
+                            <input type="password" id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+
+                            <label><input type="checkbox" checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)}/>Remember Me</label>
+                            <input type="submit" value="Submit"/>
+                        </form>
+                    </div>
+                </div>
             </main>
             <Footer />
         </div>

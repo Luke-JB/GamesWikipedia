@@ -1,38 +1,38 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.AspNetCore.Identity;
 using gwBackend.Data;
 using gwBackend.Data.Models;
 using gwBackend.Extensions;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container
+// Add services to the container.
+
 builder.Services.AddControllers();
-
-// Games DB Context
-builder.Services.AddDbContext<GamesDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
-
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
+});
+
+// AppDbContext DB Context
+//Add-Migration InitialCreate -Context AppDbContext
+//Update-Database -Context AppDbContext
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // User DB Context
 builder.Services.AddDbContext<UserDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Comments DB Context
-builder.Services.AddDbContext<CommentDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
-
 // Authorisation
 builder.Services.AddAuthorization();
-builder.Services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme);
-
-//AddIdentityCore 
-//builder.Services.AddIdentityCore<User>()
-//    .AddEntityFrameworkStores<UserDbContext>()
-//    .AddApiEndpoints();
+//builder.Services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme);
 
 // Add Identity
 builder.Services.AddIdentity<User, IdentityRole>(options =>
@@ -41,9 +41,7 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
     options.Password.RequireDigit = true;
     options.Password.RequiredLength = 6;
     options.Password.RequireUppercase = true;
-    options.User.RequireUniqueEmail = true;
-
-    // User settings
+    // User settings1
     options.User.AllowedUserNameCharacters =
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
     options.User.RequireUniqueEmail = false;
@@ -54,21 +52,31 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline
+// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-
-    app.ApplyMigrations();
+    app.UseDeveloperExceptionPage();
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(x => x
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .AllowCredentials()
+    .SetIsOriginAllowed(origin => true));
+    //.SetIsOriginAllowed(origin => origin == "https://your-frontend.com")
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapIdentityApi<User>();
+//app.MapIdentityApi<User>();
+
+//app.MapIdentityApi<IdentityRole>();
 
 app.Run();

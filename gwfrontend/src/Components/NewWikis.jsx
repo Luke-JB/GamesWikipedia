@@ -8,7 +8,7 @@ const NewWikis = () => {
     const [articles, setArticles] = useState([]);
 
     useEffect(() => {
-        axios.get('').then(response => {
+        axios.get("https://localhost:52188").then(response => {
             setArticles(response.data);
         })
         .catch(error => {
@@ -30,7 +30,7 @@ const NewWikis = () => {
     return (
         <div className="newWikisWrapper">
             <div className="newWikisTitle">
-                <h3>New Wikis</h3>
+                <h3>New Game Wikis</h3>
             </div>
             <div className="newWikis">
             </div>

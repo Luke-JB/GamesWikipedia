@@ -7,8 +7,7 @@ namespace gwBackend.Data
 {
     public class GamesDbContext : DbContext
     {
-        public GamesDbContext(DbContextOptions<GamesDbContext> options)
-            : base(options) 
+        public GamesDbContext(DbContextOptions<GamesDbContext> options) : base(options) 
         { 
         }
 

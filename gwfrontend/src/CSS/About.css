@@ -1,0 +1,14 @@
+.aboutWrapper {
+    padding-top: 2%;
+    padding-bottom: auto;
+    padding-left: 2%;
+    padding-right: 2%;
+    min-height: 100vh;
+    background-color: rgb(6, 3, 24);
+}
+
+.aboutTitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

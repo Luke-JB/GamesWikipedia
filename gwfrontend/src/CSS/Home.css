@@ -1,13 +1,14 @@
 main {
   font-family: Helvetica, Arial, sans-serif;
   color: white;
-  padding-left: 25%;
-  padding-right: 25%;
+  padding-left: 0%;
+  padding-right: 0%;
   align-items: center;
   background-color: rgb(0, 0, 0);
 }
 .homeWrapper {
   display: block;
+  min-height: 100vh;
 }
 .homeAbout {
   display: block;
@@ -32,4 +33,45 @@ main {
   padding-top: 3%;
   padding-bottom: 3%;
   margin-top: 0%;
+}
+.homeAddWiki {
+  background-color: rgb(22, 26, 66);
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-bottom: 3%;
+  margin-top: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.homeAddWikiButton {
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+.button {
+  width: 25%;
+  background-color: #020027;
+  color: white;
+  padding: 12px;
+  margin: 8px 0;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+  text-decoration: none;
+}
+.button:hover {
+  background-color: #4e49b1;
+}
+
+/* Desktop breakpoint */
+@media (min-width: 768px) {
+  main {
+    padding-left: 25%;
+    padding-right: 25%;
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+  }
 }

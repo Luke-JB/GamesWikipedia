@@ -1,0 +1,120 @@
+.LoginWrapper {
+    min-height: 50vh;
+    background-color: rgb(6, 3, 24);
+    padding-bottom: 100px;
+}
+
+.loginTitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginFormWrapper {
+}
+
+.loginForm {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 10px;
+}
+
+.loginForm input[type=text] {
+    width: 70%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #020027;
+    color: white;
+    font-size: 20px;
+}
+
+.loginForm input[type=password] {
+    width: 70%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #020027;
+    color: white;
+    font-size: 20px;
+}
+
+.loginForm input[type=text]:focus {
+    background-color: #050141;
+}
+
+.loginForm input[type=submit] {
+    width: 25%;
+    background-color: #020027;
+    color: white;
+    padding: 12px;
+    margin: 8px 0;
+    margin-left: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.loginForm input[type=submit]:hover {
+    background-color: #4e49b1;
+}
+
+/* Desktop breakpoint */
+@media (min-width: 768px) {
+    .LoginWrapper {
+        padding: 20%;
+        padding-top: auto;
+        padding-bottom: auto;
+        min-height: 50vh;
+        background-color: rgb(6, 3, 24);
+    }
+    .loginTitle {
+        display: flex;
+        align-items: center;
+    }
+    .loginFormWrapper {
+    }
+    
+    .loginForm {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .loginForm input[type=text] {
+        width: 70%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: #020027;
+        color: white;
+        font-size: 20px;
+    }
+    
+    .loginForm input[type=text]:focus {
+        background-color: #050141;
+    }
+    
+    .loginForm input[type=submit] {
+        width: 25%;
+        background-color: #020027;
+        color: white;
+        padding: 12px;
+        margin: 8px 0;
+        margin-left: 10px;
+        border: none;
+        border-radius: 4px;
+        font-size: 20px;
+    }
+    
+    .loginForm input[type=submit]:hover {
+        background-color: #4e49b1;
+    }
+}

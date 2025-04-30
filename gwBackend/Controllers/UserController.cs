@@ -5,6 +5,12 @@ using System.Diagnostics.Eventing.Reader;
 using gwBackend.Data;
 using gwBackend.Data.Models;
 using gwBackend.Data.DTO;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using System.Xml.Linq;
 
 namespace gwBackend.Controllers
 {
@@ -12,67 +18,176 @@ namespace gwBackend.Controllers
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserDbContext _context;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
 
-        public UserController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public UserController(UserDbContext context, UserManager<User> userManager, SignInManager<User> signInManager)
         {
+            _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
         }
 
         // Register a new user
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [Route("RegisterNewUser")]
         public async Task<IActionResult> Register([FromBody] NewUserDto register)
         {
-            var user = new User
-            { 
-                UserName = register.Username, 
-                Email = register.Email,
-                Name = register.Name
-            };
-
-            var result = await _userManager.CreateAsync(user, register.Password);
-            if (result.Succeeded)
+            try
             {
-                await _userManager.AddToRoleAsync(user, "Member");
-                await _signInManager.SignInAsync(user, isPersistent: false);
-                return RedirectToAction("Index", "Home");
-            }
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError(string.Empty, error.Description);
-            }
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
 
-            return BadRequest(result.Errors);
+                var user = new User
+                {
+                    UserName = register.Username,
+                    Email = register.Email,
+                    Name = register.Name
+                };
+
+                var User = await _userManager.CreateAsync(user, register.Password);
+                if (User.Succeeded)
+                {
+                    await _userManager.AddToRoleAsync(user, "User");
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return Ok();
+                }
+
+                foreach (var error in User.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+
+                //using StringContent connJson = new(JsonSerializer.Serialize(connectionDto), Encoding.UTF8, "application/json");
+                //HttpClient client = new HttpClient();
+                //var test = "";
+                return BadRequest(ModelState);
+            }
+            catch (Exception ex)
+            {
+                //return StatusCode(500, ex.ToString());
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
         }
 
-        // Login
+        // Login user account
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginDto model)
+        [Route("LoginUser")]
+        public async Task<IActionResult> Login([FromBody] LoginDto login)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var user = await _userManager.FindByNameAsync(model.UserName) ?? await _userManager.FindByEmailAsync(model.UserName);
+                return BadRequest(ModelState);
+            }
 
-                if (User != null)
+            var user = await _userManager.FindByNameAsync(login.UserName); //?? await _userManager.FindByEmailAsync(login.UserName);
+            
+            if (User == null)
+            {
+                return Unauthorized();
+            }
+
+            var result = await _signInManager.PasswordSignInAsync(user, login.Password, login.RememberMe, lockoutOnFailure: false);
+
+            if (result.Succeeded)
+            {
+                return Ok();
+            }
+
+            return Unauthorized();
+        }
+
+        // Logout user account
+        [HttpPost]
+        [Route("LogoutUser")]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return Ok();
+        }
+
+        // Get user info
+        [Authorize]
+        [HttpGet]
+        [Route("UserRoles")]
+        public async Task<IActionResult> GetUserInfo()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var roles = User.FindAll(ClaimTypes.Role).Select(r => r.Value);
+            return Ok(new { UserId = userId, Roles = roles });
+        }
+
+        [HttpGet]
+        [Route("Profile")]
+        public async Task<IActionResult> GetProfile()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(new { user.UserName, user.Email });
+        }
+
+        [Authorize]
+        [HttpPut]
+        [Route("UpdateProfile")]
+        public async Task<IActionResult> UpdateProfile([FromBody] UpdateUserDto update)
+        {
+            var user = await _userManager.GetUserAsync(User) as User;
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+            user.UserName = update.Username;
+            user.Email = update.Email;
+            user.Name = update.Name;
+
+            var updateResult = await _userManager.UpdateAsync(user);
+
+            if (!updateResult.Succeeded)
+            {
+                return BadRequest(updateResult.Errors);
+            }
+
+            if (!string.IsNullOrWhiteSpace(update.NewPassword))
+            {
+                var removePasswordResult = await _userManager.RemovePasswordAsync(user);
+                if (!removePasswordResult.Succeeded)
                 {
-                    var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
-
-                    if (result.Succeeded)
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt. ");
+                    return BadRequest(removePasswordResult.Errors);
                 }
-                else
+
+                var addPasswordResult = await _userManager.AddPasswordAsync(user, update.NewPassword);
+                if (!addPasswordResult.Succeeded)
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt");
+                    return BadRequest(addPasswordResult.Errors);
                 }
             }
-            return Ok(model);
+            return Ok();
+        }
+        [Authorize]
+        [HttpGet("Me")]
+        public async Task<IActionResult> GetCurrentUser()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null) return Unauthorized();
+
+            var roles = await _userManager.GetRolesAsync(user);
+
+            return Ok(new
+            {
+                user.UserName,
+                user.Email,
+                Roles = roles
+            });
         }
     }
 }
+
+

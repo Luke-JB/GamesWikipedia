@@ -1,0 +1,137 @@
+.searchFormWrapper {
+  padding: 20%;
+  padding-top: auto;
+  padding-bottom: auto;
+  min-height: 50vh;
+  background-color: rgb(6, 3, 24);
+}
+
+.searchFormTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchForm {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 10px;
+}
+
+.searchForm input[type=text] {
+  width: 70%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #020027;
+  color: white;
+  font-size: 20px;
+}
+
+.searchForm input[type=text]:focus {
+  background-color: #050141;
+}
+
+.searchForm input[type=number] {
+  width: 70%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #020027;
+  color: white;
+  font-size: 20px;
+}
+
+.searchForm input[type=number]:focus {
+  background-color: #050141;
+}
+
+.searchForm input[type=submit] {
+  width: 25%;
+  background-color: #020027;
+  color: white;
+  padding: 12px;
+  margin: 8px 0;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.searchForm input[type=submit]:hover {
+    background-color: #4e49b1;
+}
+
+/* The container */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+  
+/* When the checkbox is checked, add a background */
+.container input:checked ~ .checkmark {
+  background-color: #2195f334;
+}
+  
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+  
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+  
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}

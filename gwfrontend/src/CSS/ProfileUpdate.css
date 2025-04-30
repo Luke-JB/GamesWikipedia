@@ -1,0 +1,42 @@
+#nameUpdate {
+    margin-bottom: 2%;
+}
+
+#passwordUpdate {
+    margin-bottom: 2%;
+}
+
+#emailUpdate {
+    margin-bottom: 2%;
+}
+
+.profileUpdateForm input[type=text] {
+    padding: 8px 15px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #050233;
+    color: white;
+    font-size: 20px;
+}
+
+.profileUpdateForm input[type=text]:focus {
+    background-color: #050141;
+}
+
+.profileUpdateForm input[type=submit] {
+    width: 20%;
+    background-color: #2f2c68;
+    color: white;
+    padding: 12px;
+    margin: 8px 0;
+    margin-left: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 20px;
+}
+
+.profileUpdateForm input[type=submit]:hover {
+    background-color: #4e49b1;
+}

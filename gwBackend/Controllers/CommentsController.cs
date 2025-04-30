@@ -2,6 +2,7 @@
 using gwBackend.Data.DTO;
 using gwBackend.Data.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
@@ -9,22 +10,24 @@ using System.Security.Claims;
 namespace gwBackend.Controllers
 {
     [ApiController]
-    [Route("api/controller")]
+    [Route("api/posts/{postId}/comments")]
     public class CommentsController : ControllerBase
     {
-        private readonly CommentDbContext _context;
+        private readonly AppDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public CommentsController(CommentDbContext context)
+        public CommentsController(AppDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // Get Comments
         [HttpGet("{gameId}")]
-        public async Task<ActionResult<IEnumerable<Comment>>> GetCommentsByGame(int gameId)
+        public async Task<ActionResult<IEnumerable<Comment>>> GetCommentsByGame(int commentId)
         {
             var comments = await _context.Comments
-                .Where(c => c.GameId == gameId)
+                .Where(c => c.GameId == commentId)
                 .OrderByDescending(c => c.DateTime)
                 .ToListAsync();
 
@@ -37,9 +40,6 @@ namespace gwBackend.Controllers
         public async Task<ActionResult<Comment>> AddComment(CommentDto commentDto)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            {
-
-            }
             var comment = new Comment
             {
                 Text = commentDto.Text,
@@ -54,27 +54,39 @@ namespace gwBackend.Controllers
             return CreatedAtAction(nameof(GetCommentsByGame), new { gameId = comment.GameId }, comment);
         }
 
-        // Update Comments
-        [HttpPut("{gameId}")]
-        public async Task<ActionResult<Comment>> UpdateComment(int gameId, [FromBody] CommentDto commentDto)
+        [ApiController]
+        [Route("api/comments")]
+        public class SingleCommentController : ControllerBase
         {
-            var existingText = await _context.Comments.FindAsync(gameId);
-            _context.Entry(gameId).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            private readonly AppDbContext _context;
 
-            return NoContent();
-        }
+            public SingleCommentController(AppDbContext context)
+            {
+                _context = context;
+            }
 
-        // Delete Comments
-        [HttpDelete("{gameId}")]
-        public async Task<ActionResult<Comment>> DeleteGame(int gameId, [FromBody] CommentDto commentDto)
-        {
-            var comment = await _context.Comments.FindAsync(gameId);
-            _context.Comments.Remove(comment);
-            await _context.SaveChangesAsync();
+            // Update Comments
+            [HttpPut("{commentId}")]
+            public async Task<ActionResult<Comment>> UpdateComment(int commentId, [FromBody] CommentDto commentDto)
+            {
+                var existingText = await _context.Comments.FindAsync(commentId);
+                _context.Entry(commentId).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
 
-            return NoContent();
+                return NoContent();
+            }
 
+            // Delete Comments
+            [HttpDelete("{commentId}")]
+            [Authorize(Roles = "Moderator")]
+            public async Task<ActionResult<Comment>> DeleteComment(int commentId)
+            {
+                var comment = await _context.Comments.FindAsync(commentId);
+                _context.Comments.Remove(comment);
+                await _context.SaveChangesAsync();
+
+                return NoContent();
+            }
         }
     }
 }

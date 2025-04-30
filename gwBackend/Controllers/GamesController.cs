@@ -1,8 +1,10 @@
 ﻿using gwBackend.Data;
 using gwBackend.Data.DTO;
 using gwBackend.Data.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace gwBackend.Controllers
 {
@@ -24,7 +26,7 @@ namespace gwBackend.Controllers
             return await _context.Games.ToListAsync();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("GetGame/{id}")]
         public async Task<ActionResult<Game>> GetGame(int id)
         {
             var game = await _context.Games.FindAsync(id); // Get game by id logic
@@ -37,7 +39,7 @@ namespace gwBackend.Controllers
 
         // Search for games
         // GET: api/Games/search?name=GameName
-        [HttpGet("search")]
+        [HttpGet("Search")]
         public async Task<ActionResult<IEnumerable<Game>>> SearchGames([FromQuery] string name, [FromQuery] string genre, [FromQuery] string developer, [FromQuery] string publisher, [FromQuery] string release, [FromQuery] bool coop, [FromQuery] bool indie, [FromQuery] string platform, [FromQuery] string director, [FromQuery] string writer, [FromQuery] string composer, [FromQuery] string description)
         {
             var query = _context.Games.AsQueryable();
@@ -107,8 +109,7 @@ namespace gwBackend.Controllers
         }
 
         // Update Games
-        [HttpPut("{id}")]
-        [Route("UpdateGame")]
+        [HttpPut("UpdateGame/{id}")]
         public async Task<IActionResult> PutGame(int id, GameDto game)
         {
             if (id != game.GameId)
@@ -123,8 +124,7 @@ namespace gwBackend.Controllers
         }
 
         // Delete Games
-        [HttpDelete("{id}")]
-        [Route("DeleteGame")]
+        [HttpPut("DeleteGame/{id}")]
         public async Task<IActionResult> DeleteGame(int id)
         {
             var game = await _context.Games.FindAsync(id);

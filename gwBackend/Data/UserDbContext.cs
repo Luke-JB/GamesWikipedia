@@ -7,9 +7,10 @@ namespace gwBackend.Data
 {
     public class UserDbContext : IdentityDbContext<User>
     {
-        public UserDbContext(DbContextOptions<UserDbContext> options)
-            : base(options) 
-        { 
+        //public UserDbContext(DbContextOptions<UserDbContext> options) : base(options)
+        public UserDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
+        {
+
         }
 
         public DbSet<User> Users { get; set; }
@@ -22,26 +23,25 @@ namespace gwBackend.Data
             {
                 new IdentityRole()
                 {
+                    Id = "01",
                     Name = "User",
                     NormalizedName = "USER"
                 },
                 new IdentityRole()
                 {
+                    Id = "02",
                     Name = "Moderator",
                     NormalizedName = "MODERATOR"
                 },
                 new IdentityRole()
                 {
+                    Id = "03",
                     Name = "Admin",
                     NormalizedName = "ADMIN"
                 }
             };
 
             builder.Entity<IdentityRole>().HasData(roles);
-
-            builder.Entity<User>().Property(u => u.UserId).HasMaxLength(10);
-
-            builder.HasDefaultSchema("identity");
         }
     }
 }
