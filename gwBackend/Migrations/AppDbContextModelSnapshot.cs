@@ -19,7 +19,7 @@ namespace gwBackend.Migrations
 
             modelBuilder.Entity("gwBackend.Data.Models.Comment", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CommentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -32,17 +32,15 @@ namespace gwBackend.Migrations
                     b.Property<string>("Text")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("UserId1")
+                    b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                    b.HasKey("CommentId");
 
                     b.HasIndex("GameId");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Comments");
                 });
@@ -78,6 +76,10 @@ namespace gwBackend.Migrations
 
                     b.Property<bool>("GameIndie")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("GameInfo")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("GameName")
                         .IsRequired()
@@ -116,10 +118,12 @@ namespace gwBackend.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("InternalUserId")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("LockoutEnabled")
@@ -129,17 +133,12 @@ namespace gwBackend.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NormalizedEmail")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NormalizedUserName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PasswordHash")
@@ -157,11 +156,7 @@ namespace gwBackend.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("UserName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -178,12 +173,19 @@ namespace gwBackend.Migrations
                         .IsRequired();
 
                     b.HasOne("gwBackend.Data.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId1");
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Game");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("gwBackend.Data.Models.User", b =>
+                {
+                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }

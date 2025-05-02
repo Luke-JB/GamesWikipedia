@@ -11,11 +11,13 @@ const GameAdd = ({ isLoggedIn }) => {
         title: '',
         year: '',
         genre: '',
-        coop: '',
+        coop: false,
         developer: '',
         publisher: '',
-        indie: '',
-        platform: []
+        indie: false,
+        platform: [],
+        description: '',
+        info: ''
     });
 
     const handleChange = (e) => {
@@ -49,7 +51,19 @@ const GameAdd = ({ isLoggedIn }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await addGame(formData).catch((e) => console.log(e.message))
+        const gameData = {
+            gameName: formData.title,
+            gameRelease: formData.year,
+            gameGenre: formData.genre,
+            gameDeveloper: formData.developer,
+            gamePublisher: formData.publisher,
+            gameCoop: formData.coop,   // boolean value
+            gameIndie: formData.indie, // boolean value
+            gamePlatform: formData.platform.join(', '),
+            gameDescription: formData.description,
+            gameInfo: formData.info
+        };    
+        const response = await addGame(gameData).catch((e) => console.log(e.message))
     };
     
     return (
@@ -105,11 +119,11 @@ const GameAdd = ({ isLoggedIn }) => {
                             </label><br/>
                             <p>Co-op</p>
                             <label className="AddGameRadioContainer">Yes
-                                <input type="radio" name="coop" value="coopYes" checked={formData.coop === "coopYes"} onChange={handleChange}></input>
+                                <input type="radio" name="coop" value={true} checked={formData.coop === true} onChange={() => setFormData({ ...formData, coop: true })}></input>
                                 <span className="AddGameRadioCheckmark"></span>
                             </label>
                             <label className="AddGameRadioContainer">No
-                                <input type="radio" name="coop" value="coopNo" checked={formData.coop === "coopNo"} onChange={handleChange}></input>
+                                <input type="radio" name="coop" value={false} checked={formData.coop === false} onChange={() => setFormData({ ...formData, coop: false })}></input>
                                 <span className="AddGameRadioCheckmark"></span>
                             </label><br/>
                             <label htmlFor="developer">Developer:</label>
@@ -118,11 +132,11 @@ const GameAdd = ({ isLoggedIn }) => {
                             <input type="text" id="publisher" name="publisher" value={formData.publisher} onChange={handleChange}></input><br/>
                             <p>Indie</p>
                             <label className="AddGameRadioContainer">Yes
-                                <input type="radio" name="indie" value="indieYes" checked={formData.indie === "indieYes"} onChange={handleChange}></input>
+                                <input type="radio" name="indie" value={true} checked={formData.indie === true} onChange={() => setFormData({ ...formData, indie: true })}></input>
                                 <span className="AddGameRadioCheckmark"></span>
                             </label>
                             <label className="AddGameRadioContainer">No
-                                <input type="radio" name="indie" value="indieNo" checked={formData.indie === "indieNo"} onChange={handleChange}></input>
+                                <input type="radio" name="indie" value={false} checked={formData.indie === false} onChange={() => setFormData({ ...formData, indie: false })}></input>
                                 <span className="AddGameRadioCheckmark"></span>
                             </label><br/>
                             <p>Platform</p>
@@ -171,8 +185,18 @@ const GameAdd = ({ isLoggedIn }) => {
                                     <input type="checkbox" name="platform" value="Xbox" checked={formData.platform.includes("Xbox")} onChange={handleChange}></input>
                                     <span className="GameAddcheckmark"></span>
                                 </label>
+                            </section><br/>
+                            <section>
+                                <p>Game Description</p>
+                                <label htmlFor="description"></label>
+                                <textarea id="description" name="description" rows="4" cols="50" value={formData.description} onChange={handleChange} placeholder="Type description here..."></textarea><br/>
                             </section>
-                            <input type="submit" value="Submit"></input>
+                            <section>
+                                <p>Game Extra Detail</p>
+                                <label htmlFor="info"></label>
+                                <textarea id="info" name="info" rows="4" cols="50" value={formData.info} onChange={handleChange} placeholder="Type Extra game detail here..."></textarea><br/>
+                            </section>
+                            <input type="submit" value="Submit"/>
                         </form>
                     </div>
                 </div>

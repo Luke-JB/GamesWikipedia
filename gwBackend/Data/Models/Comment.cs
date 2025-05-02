@@ -10,11 +10,11 @@ namespace gwBackend.Data.Models
         public DateTime DateTime { get; set; }
 
         // Foreign Keys
-        [ForeignKey("/GameId")]
+        //[ForeignKey(nameof(Game))]
         public int GameId { get; set; }
         public Game? Game { get; set; }
-        [ForeignKey("UserId")]
-        public int UserId { get; set; }
+        //[ForeignKey(nameof(User))]
+        public string UserId { get; set; }
         public User? User { get; set; }
     }
 }

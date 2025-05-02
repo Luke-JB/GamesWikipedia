@@ -26,7 +26,11 @@ export const updateProfile = () => {
 
 // Search
 export const searchGames = (config) => {
-    return axiosInstance.get("Games/Search", config);
+    return axiosInstance.get(`Games/Search`, config);
+};
+
+export const getAllGames = () => {
+    return axiosInstance.get("Games");
 };
 
 // Add Game
@@ -39,28 +43,28 @@ export const getCurrentUser = () => {
     return axiosInstance.get("User/Me");
 }
 
-export const getGames = () => {
-    return axiosInstance.get("Games/GetGame");
+export const getGameById = (id) => {
+    return axiosInstance.get(`Games/GetGame/${id}`);
 };
 
 export const getComments = (postId) => {
-    return axiosInstance.get("posts/${postId}/comments");
+    return axiosInstance.get(`posts/${postId}/comments`);
 };
 
 export const addComment = (postId, content, token) => {
-    return axiosInstance.post("posts/${postId}/comments", { content }, {
-        headers: { Authorization : 'Bearer ${token}' },
+    return axiosInstance.post(`posts/${postId}/comments`, { text: content }, {
+        headers: { Authorization : `Bearer ${token}` },
     });
 };
 
 export const deleteComment = (commentId, token) => {
-    return axiosInstance.delete("comments/${commentId}", {
-        headers: { Authorization: 'Bearer ${token}' },
+    return axiosInstance.delete(`comments/${commentId}`, {
+        headers: { Authorization: `Bearer ${token}` },
     });
 };
 
 export const updateComment = (commentId, content, token) => {
-    return axiosInstance.put("comments/${commentId}", { content }, {
-        headers: { Authorization: 'Bearer ${token}' },
+    return axiosInstance.put(`comments/${commentId}`, { text: content }, {
+        headers: { Authorization: `Bearer ${token}` },
     });
 };

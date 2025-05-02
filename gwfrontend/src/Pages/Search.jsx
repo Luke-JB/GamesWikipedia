@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import '../CSS/Search.css';
-import axios from 'axios';
-import { searchGames } from "../api/api";
+import { getAllGames, searchGames } from "../api/api";
+import { Link, useParams } from "react-router";
 
 const Search = () => {
-    
     const [formData, setFormData] = useState({
         title: '',
         year: '',
@@ -18,17 +16,18 @@ const Search = () => {
         platform: []
     });
 
+    //const { gameId } = useParams();
+
     const [results, setResults] = useState([]);
+
+    useEffect(() => {
+        getAllGames().then(res => setResults(res.data)).catch((e) => console.error("Error fetching games:", e));
+    }, []);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleTextChange = (e) => {
-        setFormData(prev => ({...prev, searchText: e.target.value,
-        }));
-    };
-    
     const handleCheckChange = (e) => {
         const { name, value, checked } = e.target;
         
@@ -39,23 +38,6 @@ const Search = () => {
             return { ...prev, [name]: categories };
         });
     };
-    
-    /*const handleCheckChange = (e) => {
-        const { value, checked } = e.target;
-        setFormData((prevData) => {
-            const categories = checked
-            ? [...prevData.categories, value]
-            : prevData.categories.filter((cat) => cat !== value);
-            return { ...prevData, categories };
-        });
-    }; 
-        
-    const handleSearch = async () => {
-        const params = {};
-        for (let key in filters) {
-            if (filters[key]) params[key] = filters[key];
-        } 
-    }*/
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -172,12 +154,22 @@ const Search = () => {
 
                             <input type="submit" value="Submit"></input>
                         </form>
-
-                        <ul>
-                            {results.map(Game => (
-                                <li key={Game.GameId}>{Game.GameName}</li>
-                            ))}
-                        </ul>
+                    </div>
+                    <div>
+                        <h2>Search Results</h2>
+                        {results.length === 0 ? (
+                            <p>No games found.</p>
+                        ) : (
+                            results.map((game) => (
+                                <div key={game.id}>
+                                    <Link to={`/gamewiki/${game.id}`}>
+                                    <h3>{game.title}</h3>
+                                    </Link>
+                                    <p>Released: {game.year}</p>
+                                    <p>Developer: {game.developer}</p>
+                                </div>
+                            ))
+                        )}
                     </div>
                 </div>
             </main>
@@ -191,6 +183,12 @@ const Search = () => {
     {results.map((p) => (
         <li key={p.id}>{p.name} - ${p.price} ({p.category})</li>
     ))}
+</ul>
+
+<ul>
+    {results.map(Game => (
+        <li key={Game.GameId}>{Game.GameName}</li>
+        ))}
 </ul>
 */
 

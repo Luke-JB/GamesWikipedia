@@ -12,9 +12,9 @@ namespace gwBackend.Controllers
     [Route("api/[controller]")]
     public class GamesController : ControllerBase
     {
-        private readonly GamesDbContext _context;
+        private readonly AppDbContext _context;
 
-        public GamesController(GamesDbContext context)
+        public GamesController(AppDbContext context)
         {
             _context = context;
         }
@@ -34,64 +34,67 @@ namespace gwBackend.Controllers
             {
                 return NotFound();
             }
+
+            var dto = new GameDto
+            {
+                GameId = game.GameId,
+                GameName = game.GameName,
+                GameGenre = game.GameGenre,
+                GameDeveloper = game.GameDeveloper,
+                GamePublisher = game.GamePublisher,
+                GameRelease = game.GameRelease,
+                GameCoop = game.GameCoop,
+                GameIndie = game.GameIndie,
+                GamePlatform = game.GamePlatform,
+                GameDirector = game.GameDirector,
+                GameWriter = game.GameWriter,
+                GameComposer = game.GameComposer,
+                GameDescription = game.GameDescription,
+                GameInfo = game.GameInfo
+            };
+
             return Ok(game);
         }
 
         // Search for games
         // GET: api/Games/search?name=GameName
         [HttpGet("Search")]
-        public async Task<ActionResult<IEnumerable<Game>>> SearchGames([FromQuery] string name, [FromQuery] string genre, [FromQuery] string developer, [FromQuery] string publisher, [FromQuery] string release, [FromQuery] bool coop, [FromQuery] bool indie, [FromQuery] string platform, [FromQuery] string director, [FromQuery] string writer, [FromQuery] string composer, [FromQuery] string description)
+        public async Task<ActionResult<IEnumerable<Game>>> SearchGames([FromQuery] SearchDto dto)
         {
             var query = _context.Games.AsQueryable();
 
-            if (!string.IsNullOrEmpty(name))
-            {
-                query = query.Where(p => p.GameName.Contains(name));
-            }
-            if (!string.IsNullOrEmpty(genre))
-            {
-                query = query.Where(p => p.GameGenre.Contains(genre));
-            }
-            if (!string.IsNullOrEmpty(developer))
-            {
-                query = query.Where(p => p.GameDeveloper.Contains(developer));
-            }
-            if (!string.IsNullOrEmpty(publisher))
-            {
-                query = query.Where(p => p.GamePublisher.Contains(publisher));
-            }
-            if (!string.IsNullOrEmpty(release))
-            {
-                query = query.Where(p => p.GameRelease.Contains(release));
-            }
-            if (coop)
-            {
-                query = query.Where(p => p.GameCoop == coop);
-            }
-            if (indie)
-            {
-                query = query.Where(p => p.GameIndie== indie);
-            }
-            if (!string.IsNullOrEmpty(platform))
-            {
-                query = query.Where(p => p.GamePlatform.Contains(platform));
-            }
-            if (!string.IsNullOrEmpty(director))
-            {
-                query = query.Where(p => p.GameDirector.Contains(director));
-            }
-            if (!string.IsNullOrEmpty(writer))
-            {
-                query = query.Where(p => p.GameWriter.Contains(writer));
-            }
-            if (!string.IsNullOrEmpty(composer))
-            {
-                query = query.Where(p => p.GameComposer.Contains(composer));
-            }
-            if (!string.IsNullOrEmpty(description))
-            {
-                query = query.Where(p => p.GameDescription.Contains(description));
-            }
+            if (!string.IsNullOrEmpty(dto.Name))
+                query = query.Where(p => p.GameName.Contains(dto.Name));
+
+            if (!string.IsNullOrEmpty(dto.Genre))
+                query = query.Where(p => p.GameGenre.Contains(dto.Genre));
+
+            if (!string.IsNullOrEmpty(dto.Developer))
+                query = query.Where(p => p.GameDeveloper.Contains(dto.Developer));
+
+            if (!string.IsNullOrEmpty(dto.Publisher))
+                query = query.Where(p => p.GamePublisher.Contains(dto.Publisher));
+
+            if (!string.IsNullOrEmpty(dto.Release))
+                query = query.Where(p => p.GameRelease.Contains(dto.Release));
+
+            if (dto.Coop == true)
+                query = query.Where(p => p.GameCoop == true);
+
+            if (dto.Indie == true)
+                query = query.Where(p => p.GameIndie == true);
+
+            if (!string.IsNullOrEmpty(dto.Platform))
+                query = query.Where(p => p.GamePlatform.Contains(dto.Platform));
+
+            if (!string.IsNullOrEmpty(dto.Director))
+                query = query.Where(p => p.GameDirector.Contains(dto.Director));
+
+            if (!string.IsNullOrEmpty(dto.Writer))
+                query = query.Where(p => p.GameWriter.Contains(dto.Writer));
+
+            if (!string.IsNullOrEmpty(dto.Composer))
+                query = query.Where(p => p.GameComposer.Contains(dto.Composer));
 
             var games = await query.ToListAsync();
 
@@ -103,9 +106,25 @@ namespace gwBackend.Controllers
         [Route("NewGame")]
         public async Task<IActionResult> NewGame([FromBody] GameDto game)
         {
-            await _context.AddAsync(game);
+            var newGame = new Game
+            {
+                GameName = game.GameName,
+                GameGenre = game.GameGenre,
+                GameDeveloper = game.GameDeveloper,
+                GameRelease = game.GameRelease,
+                GameCoop = game.GameCoop,
+                GameIndie = game.GameIndie,
+                GamePlatform = game.GamePlatform,
+                GameDirector = game.GameDirector,
+                GameWriter = game.GameWriter,
+                GameComposer = game.GameComposer,
+                GameDescription = game.GameDescription,
+                GameInfo = game.GameInfo
+            };
+
+            await _context.AddAsync(newGame);
             await _context.SaveChangesAsync();
-            return Ok();
+            return Ok(newGame);
         }
 
         // Update Games

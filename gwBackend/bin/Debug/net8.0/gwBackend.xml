@@ -16,6 +16,18 @@
         <member name="M:gwBackend.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:gwBackend.Migrations.updated">
+            <inheritdoc />
+        </member>
+        <member name="M:gwBackend.Migrations.updated.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:gwBackend.Migrations.updated.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:gwBackend.Migrations.updated.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
         <member name="T:gwBackend.Migrations.UserDb.InitialCreate">
             <inheritdoc />
         </member>

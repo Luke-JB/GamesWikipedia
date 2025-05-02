@@ -17,6 +17,7 @@ namespace gwBackend.Data.Models
         public string GameWriter { get; set; }
         public string GameComposer { get; set; }
         public string GameDescription { get; set; }
+        public string GameInfo { get; set; }
 
         public Game() { }
     }

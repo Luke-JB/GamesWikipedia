@@ -23,11 +23,11 @@ namespace gwBackend.Controllers
         }
 
         // Get Comments
-        [HttpGet("{gameId}")]
-        public async Task<ActionResult<IEnumerable<Comment>>> GetCommentsByGame(int commentId)
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Comment>>> GetCommentsByGame(int gameId)
         {
             var comments = await _context.Comments
-                .Where(c => c.GameId == commentId)
+                .Where(c => c.GameId == gameId)
                 .OrderByDescending(c => c.DateTime)
                 .ToListAsync();
 
@@ -37,7 +37,7 @@ namespace gwBackend.Controllers
         // Add Comments
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult<Comment>> AddComment(CommentDto commentDto)
+        public async Task<ActionResult<Comment>> AddComment(int gameId, CommentDto commentDto)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var comment = new Comment

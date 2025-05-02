@@ -17,6 +17,17 @@ namespace gwBackend.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            
+            builder.Entity<Comment>()
+                .HasOne(c => c.User)
+                .WithMany(u => u.Comments)
+                .HasForeignKey(c => c.UserId)
+                .OnDelete(DeleteBehavior.Restrict); // Prevent cascading delete if needed
+
+            builder.Entity<Comment>()
+                .HasOne(c => c.Game)
+                .WithMany() // or .WithMany(g => g.Comments) if navigation property exists
+                .HasForeignKey(c => c.GameId);
         }
     }
 }

@@ -6,5 +6,6 @@ namespace gwBackend.Data.Models
     {
         public int InternalUserId { get; set; }
         public string? Name { get; set; }
+        public ICollection<Comment> Comments { get; set; }
     }
 }
