@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import '../CSS/GameAdd.css';
-import axios from "axios";
 import { addGame } from "../api/api";
 import { Navigate } from "react-router";
 
@@ -14,6 +13,9 @@ const GameAdd = ({ isLoggedIn }) => {
         coop: false,
         developer: '',
         publisher: '',
+        director: '',
+        writer: '',
+        composer: '',
         indie: false,
         platform: [],
         description: '',
@@ -41,13 +43,16 @@ const GameAdd = ({ isLoggedIn }) => {
         }
     };
 
-    /*const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        setFormData({
-            ...formData,
-            [name]: type === "checkbox" ? checked : value,
+    const handlePlatformChange = (e) => {
+        const { value, checked } = e.target;
+        
+        setFormData(prev => {
+            const platforms = checked
+                ? [...prev.platform, value]  // Add selected platform
+                : prev.platform.filter(item => item !== value); // Remove if unchecked
+            return { ...prev, platform: platforms };
         });
-    };*/
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -57,9 +62,12 @@ const GameAdd = ({ isLoggedIn }) => {
             gameGenre: formData.genre,
             gameDeveloper: formData.developer,
             gamePublisher: formData.publisher,
+            gameDirector: formData.director,
+            gameWriter: formData.writer,
+            gameComposer: formData.composer,
             gameCoop: formData.coop,   // boolean value
             gameIndie: formData.indie, // boolean value
-            gamePlatform: formData.platform.join(', '),
+            gamePlatform: formData.platform,
             gameDescription: formData.description,
             gameInfo: formData.info
         };    
@@ -130,6 +138,12 @@ const GameAdd = ({ isLoggedIn }) => {
                             <input type="text" id="developer" name="developer" value={formData.developer} onChange={handleChange}></input><br/>
                             <label htmlFor="publisher">Publisher: </label>
                             <input type="text" id="publisher" name="publisher" value={formData.publisher} onChange={handleChange}></input><br/>
+                            <label htmlFor="director">Director: </label>
+                            <input type="text" id="director" name="director" value={formData.director} onChange={handleChange}></input><br/>
+                            <label htmlFor="writer">Writer: </label>
+                            <input type="text" id="writer" name="writer" value={formData.writer} onChange={handleChange}></input><br/>
+                            <label htmlFor="composer">Composer: </label>
+                            <input type="text" id="composer" name="composer" value={formData.composer} onChange={handleChange}></input><br/>
                             <p>Indie</p>
                             <label className="AddGameRadioContainer">Yes
                                 <input type="radio" name="indie" value={true} checked={formData.indie === true} onChange={() => setFormData({ ...formData, indie: true })}></input>
@@ -142,47 +156,47 @@ const GameAdd = ({ isLoggedIn }) => {
                             <p>Platform</p>
                             <section className="platformWrapper">
                                 <label className="addGameContainer">PC
-                                    <input type="checkbox" name="platform" value="PC" checked={formData.platform.includes("PC")} onChange={handleChange}></input>
+                                    <input type="checkbox" name="platform" value="PC" checked={formData.platform.includes("PC")} onChange={handlePlatformChange}></input>
                                     <span className="GameAddcheckmark"></span>
                                 </label>
                             </section>
                             <section className="platformWrapper">
                                 <label className="addGameContainer">PS5
-                                    <input type="checkbox" name="platform" value="PS5" checked={formData.platform.includes("PS5")} onChange={handleChange}></input>
+                                    <input type="checkbox" name="platform" value="PS5" checked={formData.platform.includes("PS5")} onChange={handlePlatformChange}></input>
                                     <span className="GameAddcheckmark"></span>
                                 </label>
                                 <label className="addGameContainer">PS4
-                                    <input type="checkbox" name="platform" value="PS4" checked={formData.platform.includes("PS4")} onChange={handleChange}></input>
+                                    <input type="checkbox" name="platform" value="PS4" checked={formData.platform.includes("PS4")} onChange={handlePlatformChange}></input>
                                     <span className="GameAddcheckmark"></span>
                                 </label>
                                 <label className="addGameContainer">PS3
-                                    <input type="checkbox" name="platform" value="PS3" checked={formData.platform.includes("PS3")} onChange={handleChange}></input>
+                                    <input type="checkbox" name="platform" value="PS3" checked={formData.platform.includes("PS3")} onChange={handlePlatformChange}></input>
                                     <span className="GameAddcheckmark"></span>
                                 </label>
                                 <label className="addGameContainer">PS2
-                                    <input type="checkbox" name="platform" value="PS2" checked={formData.platform.includes("PS2")} onChange={handleChange}></input>
+                                    <input type="checkbox" name="platform" value="PS2" checked={formData.platform.includes("PS2")} onChange={handlePlatformChange}></input>
                                     <span className="GameAddcheckmark"></span>
                                 </label>
                                 <label className="addGameContainer">PS1
-                                    <input type="checkbox" name="platform" value="PS1" checked={formData.platform.includes("PS1")} onChange={handleChange}></input>
+                                    <input type="checkbox" name="platform" value="PS1" checked={formData.platform.includes("PS1")} onChange={handlePlatformChange}></input>
                                     <span className="GameAddcheckmark"></span>
                                 </label>
                             </section>
                             <section className="platformWrapper">
                                 <label className="addGameContainer">Xbox Series S/X
-                                    <input type="checkbox" name="platform" value="Xbox Series S/X" checked={formData.platform.includes("Xbox Series S/X")} onChange={handleChange}></input>
+                                    <input type="checkbox" name="platform" value="Xbox Series S/X" checked={formData.platform.includes("Xbox Series S/X")} onChange={handlePlatformChange}></input>
                                     <span className="GameAddcheckmark"></span>
                                 </label>
                                 <label className="addGameContainer">Xbox One
-                                    <input type="checkbox" name="platform" value="Xbox One" checked={formData.platform.includes("Xbox One")} onChange={handleChange}></input>
+                                    <input type="checkbox" name="platform" value="Xbox One" checked={formData.platform.includes("Xbox One")} onChange={handlePlatformChange}></input>
                                     <span className="GameAddcheckmark"></span>
                                 </label>
                                 <label className="addGameContainer">Xbox 360
-                                    <input type="checkbox" name="platform" value="Xbox 360" checked={formData.platform.includes("Xbox 360")} onChange={handleChange}></input>
+                                    <input type="checkbox" name="platform" value="Xbox 360" checked={formData.platform.includes("Xbox 360")} onChange={handlePlatformChange}></input>
                                     <span className="GameAddcheckmark"></span>
                                 </label>
                                 <label className="addGameContainer">Xbox
-                                    <input type="checkbox" name="platform" value="Xbox" checked={formData.platform.includes("Xbox")} onChange={handleChange}></input>
+                                    <input type="checkbox" name="platform" value="Xbox" checked={formData.platform.includes("Xbox")} onChange={handlePlatformChange}></input>
                                     <span className="GameAddcheckmark"></span>
                                 </label>
                             </section><br/>

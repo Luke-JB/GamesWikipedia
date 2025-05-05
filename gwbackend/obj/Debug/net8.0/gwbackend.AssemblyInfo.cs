@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("gwBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d7a7fcd336875d10bd088e9eb7328059e00b649b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+697a208fdb0a038c4b86b02aa58fb0f8a7fa2897")]
 [assembly: System.Reflection.AssemblyProductAttribute("gwBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("gwBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

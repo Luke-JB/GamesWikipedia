@@ -14,9 +14,9 @@ namespace gwBackend.Controllers
     public class CommentsController : ControllerBase
     {
         private readonly AppDbContext _context;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<User> _userManager;
 
-        public CommentsController(AppDbContext context, UserManager<IdentityUser> userManager)
+        public CommentsController(AppDbContext context, UserManager<User> userManager)
         {
             _context = context;
             _userManager = userManager;
@@ -24,10 +24,10 @@ namespace gwBackend.Controllers
 
         // Get Comments
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Comment>>> GetCommentsByGame(int gameId)
+        public async Task<ActionResult<IEnumerable<Comment>>> GetCommentsByGame([FromRoute] int postId)
         {
             var comments = await _context.Comments
-                .Where(c => c.GameId == gameId)
+                .Where(c => c.GameId == postId)
                 .OrderByDescending(c => c.DateTime)
                 .ToListAsync();
 
@@ -36,22 +36,30 @@ namespace gwBackend.Controllers
 
         // Add Comments
         [HttpPost]
-        [Authorize]
-        public async Task<ActionResult<Comment>> AddComment(int gameId, CommentDto commentDto)
+        //[Authorize]
+        public async Task<ActionResult<Comment>> AddComment([FromRoute] int postId, [FromBody] CommentDto commentDto)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var comment = new Comment
+            try
             {
-                Text = commentDto.Text,
-                GameId = commentDto.GameId,
-                UserId = commentDto.UserId,
-                DateTime = DateTime.UtcNow
-            };
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var comment = new Comment
+                {
+                    Text = commentDto.Text,
+                    GameId = postId,
+                    UserId = userId,
+                    DateTime = DateTime.UtcNow
+                };
 
-            _context.Comments.Add(comment);
-            await _context.SaveChangesAsync();
+                _context.Comments.Add(comment);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetCommentsByGame), new { gameId = comment.GameId }, comment);
+                return CreatedAtAction(nameof(GetCommentsByGame), new { gameId = postId }, comment);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error adding comment: " + ex.Message);
+                return StatusCode(500, "Internal server error");
+            }
         }
 
         [ApiController]
@@ -78,7 +86,7 @@ namespace gwBackend.Controllers
 
             // Delete Comments
             [HttpDelete("{commentId}")]
-            [Authorize(Roles = "Moderator")]
+            //[Authorize(Roles = "Moderator")]
             public async Task<ActionResult<Comment>> DeleteComment(int commentId)
             {
                 var comment = await _context.Comments.FindAsync(commentId);

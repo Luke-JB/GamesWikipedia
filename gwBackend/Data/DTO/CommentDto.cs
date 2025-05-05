@@ -6,9 +6,5 @@ namespace gwBackend.Data.DTO
     {
         [Required]
         public string? Text { get; set; }
-
-        // Foreign Keys
-        public int GameId { get; set; }
-        public string? UserId { get; set; }
     }
 }

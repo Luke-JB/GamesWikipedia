@@ -12,7 +12,7 @@ namespace gwBackend.Data.Models
         public string GameRelease { get; set; }
         public bool GameCoop { get; set; }
         public bool GameIndie { get; set; }
-        public string GamePlatform { get; set; }
+        public List<string> GamePlatform { get; set; }
         public string GameDirector { get; set; }
         public string GameWriter { get; set; }
         public string GameComposer { get; set; }

@@ -5,13 +5,15 @@ import BoxArt from "../Images/Elden_Ring_Box_art.jpg";
 import ProfilePicPlaceholder from "../Images/ProfilePicDefault.jpg";
 import '../CSS/GameWiki.css';
 import { Link, useNavigate, useParams } from "react-router";
-import { addComment, deleteComment, getComments, updateComment } from "../api/api.jsx";
+import { addComment, deleteComment, getComments, updateComment, getGameById } from "../api/api.jsx";
 
 // 10.65 x 6.31 inches 
 // 639 x 378.59
 
-const GameWiki = ({ postId, user }) => {
+const GameWiki = ({ user }) => {
+    console.log("User object:", user);
     const { gameId } = useParams();
+    const postId = gameId;
     const [gameData, setGameData] = useState({})
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
@@ -42,8 +44,12 @@ const GameWiki = ({ postId, user }) => {
     }, [postId]);
 
     // Add Comments.
-    const handleAddComment = (e) => {
+    /*const handleAddComment = (e) => {
         e.preventDefault();
+        console.log("Submitting comment...");
+        console.log("Adding comment to postId:", postId);
+        console.log("User token:", user?.token);
+        console.log("New comment:", newComment);
         if (!newComment.trim() || !user || !user.token) return;
         addComment(postId, newComment, user.token)
         .then((response) => {
@@ -51,7 +57,25 @@ const GameWiki = ({ postId, user }) => {
             setNewComment("");
         })
         .catch((e) => console.log(e.message));
+    };*/
+
+    const handleAddComment = async (e) => {
+        e.preventDefault();
+        console.log("Clicked add comment");
+        console.log("Adding comment to postId:", postId);
+        console.log("User token:", user?.token);
+        console.log("New comment:", newComment);
+    
+        try {
+            const res = await addComment(postId, newComment, user.token);
+            console.log("Comment added:", res.data);
+            setComments((prev) => [...prev, res.data]);
+            setNewComment("");
+        } catch (err) {
+            console.error("Failed to add comment:", err);
+        }
     };
+
 
     // Delete Comments.
     const handleDeleteComment = (commentId) => {
@@ -76,31 +100,31 @@ const GameWiki = ({ postId, user }) => {
                             <Link to="/GameEdit" className="button">Edit Game Wiki</Link>
                         </div>
                         <div className="gameTitle">
-                            <h2>{gameData.name}</h2>
+                            <h2>{gameData.gameName}</h2>
                         </div>
                     </div>
                     <div className="topRow">
                         <div className="gameInfo1">
                             <h3>Game Info</h3>
-                            <p>{gameData.description}</p>
+                            <p>{gameData.gameDescription}</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sollicitudin erat nisl, id euismod tortor 
                             bibendum et. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus 
                             mus. Curabitur et elit dolor. In hac habitasse platea dictumst. Cras vitae nisl vitae nibh elementum laoreet eget sit amet.</p>
                         </div>
                         <div className="gameInfo2">
-                            <h3 className="gameInfo2Title">{gameData.name}</h3>
+                            <h3 className="gameInfo2Title">{gameData.gameName}</h3>
                             <div className="gameInfo2Details">
                                 <ul className="gameInfo2List">
-                                    <li>Developer: {gameData.developer}</li>
-                                    <li>Publisher: {gameData.publisher}</li>
-                                    <li>Director: {gameData.director}</li>
-                                    <li>Writer: {gameData.writer}</li>
-                                    <li>Composer: {gameData.composer}</li>
-                                    <li>Year of Release: {gameData.yearOfRelease}</li>
-                                    <li>Platforms: {gameData.platform}</li>
-                                    <li>Genre: {gameData.genre}</li>
-                                    <li>Indie: {gameData.indie}</li>
-                                    <li>Co-op: {gameData.coop}</li>
+                                    <li>Developer: {gameData.gameDeveloper}</li>
+                                    <li>Publisher: {gameData.gamePublisher}</li>
+                                    <li>Director: {gameData.gameDirector}</li>
+                                    <li>Writer: {gameData.gameWriter}</li>
+                                    <li>Composer: {gameData.gameComposer}</li>
+                                    <li>Year of Release: {gameData.gameRelease}</li>
+                                    <li>Platforms: {gameData.gamePlatform}</li>
+                                    <li>Genre: {gameData.gameGenre}</li>
+                                    <li>Indie: {gameData.gameIndie}</li>
+                                    <li>Co-op: {gameData.gameCoop}</li>
                                 </ul>
                                 <div className="gamePic">
                                     <img src={BoxArt} className="boxArt" alt="boxArt"></img>

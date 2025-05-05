@@ -28,6 +28,18 @@
         <member name="M:gwBackend.Migrations.updated.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:gwBackend.Migrations.listupdate">
+            <inheritdoc />
+        </member>
+        <member name="M:gwBackend.Migrations.listupdate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:gwBackend.Migrations.listupdate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:gwBackend.Migrations.listupdate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
         <member name="T:gwBackend.Migrations.UserDb.InitialCreate">
             <inheritdoc />
         </member>

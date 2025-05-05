@@ -28,6 +28,12 @@ namespace gwBackend.Data
                 .HasOne(c => c.Game)
                 .WithMany() // or .WithMany(g => g.Comments) if navigation property exists
                 .HasForeignKey(c => c.GameId);
+
+            builder.Entity<Game>()
+                .Property(g => g.GamePlatform)
+                .HasConversion(
+                v => string.Join(',', v), // List<string> → string
+                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(p => p.Trim()).ToList()); // string → List<string>
         }
     }
 }

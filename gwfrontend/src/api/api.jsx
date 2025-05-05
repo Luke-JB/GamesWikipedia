@@ -43,18 +43,22 @@ export const getCurrentUser = () => {
     return axiosInstance.get("User/Me");
 }
 
-export const getGameById = (id) => {
-    return axiosInstance.get(`Games/GetGame/${id}`);
+export const getGameById = (gameId) => {
+    return axiosInstance.get(`Games/GetGame/${gameId}`);
 };
 
 export const getComments = (postId) => {
     return axiosInstance.get(`posts/${postId}/comments`);
 };
 
-export const addComment = (postId, content, token) => {
+/*export const addComment = (postId, content, token) => {
     return axiosInstance.post(`posts/${postId}/comments`, { text: content }, {
         headers: { Authorization : `Bearer ${token}` },
     });
+};*/
+export const addComment = (postId, content, token) => {
+    const headers = token ? { Authorization: `Bearer ${token}` } : {};
+    return axiosInstance.post(`posts/${postId}/comments`, { text: content }, { headers });
 };
 
 export const deleteComment = (commentId, token) => {

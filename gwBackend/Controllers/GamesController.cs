@@ -45,7 +45,7 @@ namespace gwBackend.Controllers
                 GameRelease = game.GameRelease,
                 GameCoop = game.GameCoop,
                 GameIndie = game.GameIndie,
-                GamePlatform = game.GamePlatform,
+                GamePlatform = game.GamePlatform.Select(p => p.Trim()).ToList(),
                 GameDirector = game.GameDirector,
                 GameWriter = game.GameWriter,
                 GameComposer = game.GameComposer,
@@ -63,38 +63,38 @@ namespace gwBackend.Controllers
         {
             var query = _context.Games.AsQueryable();
 
-            if (!string.IsNullOrEmpty(dto.Name))
-                query = query.Where(p => p.GameName.Contains(dto.Name));
+            if (!string.IsNullOrWhiteSpace(dto.GameName))
+            {
+                var nameSearch = dto.GameName.Trim().ToLower();
+                query = query.Where(p => p.GameName.ToLower().Contains(nameSearch));
+            }
 
-            if (!string.IsNullOrEmpty(dto.Genre))
-                query = query.Where(p => p.GameGenre.Contains(dto.Genre));
+            if (dto.GameGenre != null && dto.GameGenre.Any())
+                query = query.Where(p => dto.GameGenre.Contains(p.GameGenre)); // checks if any genre matches
 
-            if (!string.IsNullOrEmpty(dto.Developer))
-                query = query.Where(p => p.GameDeveloper.Contains(dto.Developer));
+            if (!string.IsNullOrWhiteSpace(dto.GameDeveloper))
+            {
+                var devSearch = dto.GameDeveloper.Trim().ToLower();
+                query = query.Where(p => p.GameDeveloper.ToLower().Contains(devSearch));
+            }
 
-            if (!string.IsNullOrEmpty(dto.Publisher))
-                query = query.Where(p => p.GamePublisher.Contains(dto.Publisher));
+            if (!string.IsNullOrWhiteSpace(dto.GamePublisher))
+            {
+                var publisherSearch = dto.GamePublisher.Trim().ToLower();
+                query = query.Where(p => p.GamePublisher.ToLower().Contains(publisherSearch));
+            }
 
-            if (!string.IsNullOrEmpty(dto.Release))
-                query = query.Where(p => p.GameRelease.Contains(dto.Release));
+            if (!string.IsNullOrWhiteSpace(dto.GameRelease))
+                query = query.Where(p => p.GameRelease.Contains(dto.GameRelease));
 
-            if (dto.Coop == true)
-                query = query.Where(p => p.GameCoop == true);
+            if (dto.GameCoop.HasValue)
+                query = query.Where(p => p.GameCoop == dto.GameCoop.Value);
 
-            if (dto.Indie == true)
-                query = query.Where(p => p.GameIndie == true);
+            if (dto.GameIndie.HasValue)
+                query = query.Where(p => p.GameIndie == dto.GameIndie.Value);
 
-            if (!string.IsNullOrEmpty(dto.Platform))
-                query = query.Where(p => p.GamePlatform.Contains(dto.Platform));
-
-            if (!string.IsNullOrEmpty(dto.Director))
-                query = query.Where(p => p.GameDirector.Contains(dto.Director));
-
-            if (!string.IsNullOrEmpty(dto.Writer))
-                query = query.Where(p => p.GameWriter.Contains(dto.Writer));
-
-            if (!string.IsNullOrEmpty(dto.Composer))
-                query = query.Where(p => p.GameComposer.Contains(dto.Composer));
+            if (dto.GamePlatform != null && dto.GamePlatform.Any())
+                query = query.Where(p => p.GamePlatform.Any(platform => dto.GamePlatform.Contains(platform)));
 
             var games = await query.ToListAsync();
 
@@ -106,25 +106,34 @@ namespace gwBackend.Controllers
         [Route("NewGame")]
         public async Task<IActionResult> NewGame([FromBody] GameDto game)
         {
-            var newGame = new Game
+            try
             {
-                GameName = game.GameName,
-                GameGenre = game.GameGenre,
-                GameDeveloper = game.GameDeveloper,
-                GameRelease = game.GameRelease,
-                GameCoop = game.GameCoop,
-                GameIndie = game.GameIndie,
-                GamePlatform = game.GamePlatform,
-                GameDirector = game.GameDirector,
-                GameWriter = game.GameWriter,
-                GameComposer = game.GameComposer,
-                GameDescription = game.GameDescription,
-                GameInfo = game.GameInfo
-            };
+                var newGame = new Game
+                {
+                    GameName = game.GameName,
+                    GameGenre = game.GameGenre,
+                    GameDeveloper = game.GameDeveloper,
+                    GameRelease = game.GameRelease,
+                    GameCoop = game.GameCoop,
+                    GameIndie = game.GameIndie,
+                    GamePlatform = game.GamePlatform,
+                    GamePublisher = game.GamePublisher,
+                    GameDirector = game.GameDirector,
+                    GameWriter = game.GameWriter,
+                    GameComposer = game.GameComposer,
+                    GameDescription = game.GameDescription,
+                    GameInfo = game.GameInfo
+                };
 
-            await _context.AddAsync(newGame);
-            await _context.SaveChangesAsync();
-            return Ok(newGame);
+                await _context.AddAsync(newGame);
+                await _context.SaveChangesAsync();
+                //return Ok(newGame);
+                return CreatedAtAction(nameof(GetGame), new { id = newGame.GameId }, newGame);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
         }
 
         // Update Games

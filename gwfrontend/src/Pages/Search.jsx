@@ -20,9 +20,9 @@ const Search = () => {
 
     const [results, setResults] = useState([]);
 
-    useEffect(() => {
+    /*useEffect(() => {
         getAllGames().then(res => setResults(res.data)).catch((e) => console.error("Error fetching games:", e));
-    }, []);
+    }, []);*/
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -39,36 +39,65 @@ const Search = () => {
         });
     };
 
+    const handlePlatformChange = (e) => {
+        const { value, checked } = e.target;
+        
+        setFormData(prev => {
+            const platforms = checked
+                ? [...prev.platform, value]  // Add selected platform
+                : prev.platform.filter(item => item !== value); // Remove if unchecked
+            return { ...prev, platform: platforms };
+        });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
     
-        const params = {
-            title: formData.title,
-            year: formData.year,
-            genre: formData.genre,
-            coop: formData.coop,
-            developer: formData.developer,
-            publisher: formData.publisher,
-            indie: formData.indie,
-            platform: formData.platform
+        const searchParams  = {
+            gameName: formData.title.trim(),
+            gameRelease: formData.year,
+            gameGenre: formData.genre.join(','),
+            gameCoop: formData.coop.includes("coopYes"),
+            gameDeveloper: formData.developer.trim(),
+            gamePublisher: formData.publisher.trim(),
+            gameIndie: formData.indie.includes("indieYes"),
+            gamePlatform: formData.platform.join(',')
         };
         
-        const response = await searchGames({ 
-            params,
-            paramsSerializer: (params) => {
-                const searchParams = new URLSearchParams();
-                Object.entries(params).forEach(([key, value]) => {
-                    if (Array.isArray(value)) {
-                        value.forEach((v) => searchParams.append(key, v));
-                    } else if (value !== '' && value !== null && value !== undefined) {
-                        searchParams.append(key, value);
-                    }
+        try {
+            const response = await searchGames({
+              params: searchParams,
+              paramsSerializer: (p) => {
+                const urlParams = new URLSearchParams();
+                Object.entries(p).forEach(([key, value]) => {
+                  if (Array.isArray(value)) {
+                    value.forEach((v) => urlParams.append(key, v));
+                  } else if (value !== '' && value !== null && value !== undefined) {
+                    urlParams.append(key, value);
+                  }
                 });
-                return searchParams.toString();
-            }
+                console.log("Serialized search:", urlParams.toString());
+                return urlParams.toString();
+              }
+            });
+          
+            setResults(response.data);
+          } catch (err) {
+            console.error("Search failed:", err);
+          }
+    };    
+
+    const resetForm = () => {
+        setFormData({
+            title: '',
+            year: '',
+            genre: [],
+            coop: [],
+            developer: '',
+            publisher: '',
+            indie: [],
+            platform: []
         });
-    
-        setResults(response.data);
     };
 
     return (
@@ -87,42 +116,21 @@ const Search = () => {
                             <input type="number" id="year" name="year" value={formData.year} onChange={handleChange}></input><br/>
 
                             <p>Genre</p>
-                            <label className="container">FPS
-                                <input type="checkbox" name="genre" value="FPS" checked={formData.genre.includes('FPS')} onChange={handleCheckChange}></input>
-                                <span className="checkmark"></span>
-                            </label>
-                            <label className="container">RPG
-                                <input type="checkbox" name="genre" value="RPG" checked={formData.genre.includes('RPG')} onChange={handleCheckChange}></input>
-                                <span className="checkmark"></span>
-                            </label>
-                            <label className="container">Action
-                                <input type="checkbox" name="genre" value="Action" checked={formData.genre.includes('Action')} onChange={handleCheckChange}></input>
-                                <span className="checkmark"></span>
-                            </label>
-                            <label className="container">Racing & Sports
-                                <input type="checkbox" name="genre" value="Sports" checked={formData.genre.includes('Sports')} onChange={handleCheckChange}></input>
-                                <span className="checkmark"></span>
-                            </label>
-                            <label className="container">Platformer
-                                <input type="checkbox" name="genre" value="Platformer" checked={formData.genre.includes('Platformer')} onChange={handleCheckChange}></input>
-                                <span className="checkmark"></span>
-                            </label>
-                            <label className="container">Strategy
-                                <input type="checkbox" name="genre" value="Strategy" checked={formData.genre.includes('Strategy')} onChange={handleCheckChange}></input>
-                                <span className="checkmark"></span>
-                            </label>
-                            <label className="container">Adventure
-                                <input type="checkbox" name="genre" value="Adventure" checked={formData.genre.includes('Adventure')} onChange={handleCheckChange}></input>
-                                <span className="checkmark"></span>
-                            </label>
-                            <label className="container">Simulator
-                                <input type="checkbox" name="genre" value="Simulator" checked={formData.genre.includes('Simulator')} onChange={handleCheckChange}></input>
-                                <span className="checkmark"></span>
-                            </label>
-                            <label className="container">Horror
-                                <input type="checkbox" name="genre" value="Horror" checked={formData.genre.includes('Horror')} onChange={handleCheckChange}></input>
-                                <span className="checkmark"></span>
-                            </label><br/>
+                            <div className="checkbox-group">
+                                {["FPS", "RPG", "Action", "Sports", "Platformer", "Strategy", "Adventure", "Simulator", "Horror"].map((genre) => (
+                                    <label key={genre} className="container">
+                                        {genre}
+                                        <input
+                                        type="checkbox"
+                                        name="genre"
+                                        value={genre}
+                                        checked={formData.genre.includes(genre)}
+                                        onChange={handleCheckChange}
+                                    />
+                                    <span className="checkmark"></span>
+                                </label>
+                                ))}
+                            </div>
 
                             <p>Co-op</p>
                             <label className="container">Yes
@@ -150,9 +158,55 @@ const Search = () => {
                             </label>
                             
                             <p>Platform</p>
+                            <section className="platformWrapper">
+                                <label className="addGameContainer">PC
+                                    <input type="checkbox" name="platform" value="PC" checked={formData.platform.includes("PC")} onChange={handlePlatformChange}></input>
+                                    <span className="GameAddcheckmark"></span>
+                                </label>
+                            </section>
+                            <section className="platformWrapper">
+                                <label className="addGameContainer">PS5
+                                    <input type="checkbox" name="platform" value="PS5" checked={formData.platform.includes("PS5")} onChange={handlePlatformChange}></input>
+                                    <span className="GameAddcheckmark"></span>
+                                </label>
+                                <label className="addGameContainer">PS4
+                                    <input type="checkbox" name="platform" value="PS4" checked={formData.platform.includes("PS4")} onChange={handlePlatformChange}></input>
+                                    <span className="GameAddcheckmark"></span>
+                                </label>
+                                <label className="addGameContainer">PS3
+                                    <input type="checkbox" name="platform" value="PS3" checked={formData.platform.includes("PS3")} onChange={handlePlatformChange}></input>
+                                    <span className="GameAddcheckmark"></span>
+                                </label>
+                                <label className="addGameContainer">PS2
+                                    <input type="checkbox" name="platform" value="PS2" checked={formData.platform.includes("PS2")} onChange={handlePlatformChange}></input>
+                                    <span className="GameAddcheckmark"></span>
+                                </label>
+                                <label className="addGameContainer">PS1
+                                    <input type="checkbox" name="platform" value="PS1" checked={formData.platform.includes("PS1")} onChange={handlePlatformChange}></input>
+                                    <span className="GameAddcheckmark"></span>
+                                </label>
+                            </section>
+                            <section className="platformWrapper">
+                                <label className="addGameContainer">Xbox Series S/X
+                                    <input type="checkbox" name="platform" value="Xbox Series S/X" checked={formData.platform.includes("Xbox Series S/X")} onChange={handlePlatformChange}></input>
+                                    <span className="GameAddcheckmark"></span>
+                                </label>
+                                <label className="addGameContainer">Xbox One
+                                    <input type="checkbox" name="platform" value="Xbox One" checked={formData.platform.includes("Xbox One")} onChange={handlePlatformChange}></input>
+                                    <span className="GameAddcheckmark"></span>
+                                </label>
+                                <label className="addGameContainer">Xbox 360
+                                    <input type="checkbox" name="platform" value="Xbox 360" checked={formData.platform.includes("Xbox 360")} onChange={handlePlatformChange}></input>
+                                    <span className="GameAddcheckmark"></span>
+                                </label>
+                                <label className="addGameContainer">Xbox
+                                    <input type="checkbox" name="platform" value="Xbox" checked={formData.platform.includes("Xbox")} onChange={handlePlatformChange}></input>
+                                    <span className="GameAddcheckmark"></span>
+                                </label>
+                            </section><br/>
 
-
-                            <input type="submit" value="Submit"></input>
+                            <input type="submit" value="Search"></input>
+                            <button type="button" onClick={resetForm}>Reset</button>
                         </form>
                     </div>
                     <div>
@@ -161,12 +215,12 @@ const Search = () => {
                             <p>No games found.</p>
                         ) : (
                             results.map((game) => (
-                                <div key={game.id}>
-                                    <Link to={`/gamewiki/${game.id}`}>
-                                    <h3>{game.title}</h3>
+                                <div key={game.gameId}>
+                                    <Link to={`/gamewiki/${game.gameId}`}>
+                                        <h3>{game.gameName}</h3>
                                     </Link>
-                                    <p>Released: {game.year}</p>
-                                    <p>Developer: {game.developer}</p>
+                                    <p>Released: {game.gameRelease}</p>
+                                    <p>Developer: {game.gameDeveloper}</p>
                                 </div>
                             ))
                         )}
