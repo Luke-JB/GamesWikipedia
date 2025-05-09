@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import '../CSS/GameEdit.css';
-import axios from "axios";
 import { addGame } from "../api/api";
 import { Navigate } from "react-router";
 
@@ -38,14 +36,6 @@ const GameEdit = ({ isLoggedIn }) => {
             });
         }
     };
-
-    /*const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        setFormData({
-            ...formData,
-            [name]: type === "checkbox" ? checked : value,
-        });
-    };*/
 
     const handleSubmit = async (e) => {
         e.preventDefault();

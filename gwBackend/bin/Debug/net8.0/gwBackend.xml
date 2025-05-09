@@ -40,40 +40,52 @@
         <member name="M:gwBackend.Migrations.listupdate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
-        <member name="T:gwBackend.Migrations.UserDb.InitialCreate">
+        <member name="T:gwBackend.Migrations.merged">
             <inheritdoc />
         </member>
-        <member name="M:gwBackend.Migrations.UserDb.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:gwBackend.Migrations.merged.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:gwBackend.Migrations.UserDb.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:gwBackend.Migrations.merged.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:gwBackend.Migrations.UserDb.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:gwBackend.Migrations.merged.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
-        <member name="T:gwBackend.Migrations.UserDb.updatedCreate">
+        <member name="T:gwBackend.Migrations.merged2">
             <inheritdoc />
         </member>
-        <member name="M:gwBackend.Migrations.UserDb.updatedCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:gwBackend.Migrations.merged2.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:gwBackend.Migrations.UserDb.updatedCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:gwBackend.Migrations.merged2.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:gwBackend.Migrations.UserDb.updatedCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:gwBackend.Migrations.merged2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
-        <member name="T:gwBackend.Migrations.UserDb.UserUpdate">
+        <member name="T:gwBackend.Migrations.merged3">
             <inheritdoc />
         </member>
-        <member name="M:gwBackend.Migrations.UserDb.UserUpdate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:gwBackend.Migrations.merged3.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:gwBackend.Migrations.UserDb.UserUpdate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:gwBackend.Migrations.merged3.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:gwBackend.Migrations.UserDb.UserUpdate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:gwBackend.Migrations.merged3.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:gwBackend.Migrations.testing">
+            <inheritdoc />
+        </member>
+        <member name="M:gwBackend.Migrations.testing.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:gwBackend.Migrations.testing.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:gwBackend.Migrations.testing.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>

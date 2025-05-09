@@ -5,6 +5,7 @@ using gwBackend.Data;
 using gwBackend.Data.Models;
 using gwBackend.Extensions;
 using System.Reflection;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,13 +27,17 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// User DB Context
-builder.Services.AddDbContext<UserDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
-
 // Authorisation
 builder.Services.AddAuthorization();
 //builder.Services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme);
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/User/LoginUser"; // or your login URL
+        options.AccessDeniedPath = "/Account/AccessDenied"; // For unauthorized access
+        options.LogoutPath = "/Account/Logout"; // Logout URL
+    });
 
 // Add Identity
 builder.Services.AddIdentity<User, IdentityRole>(options =>
@@ -46,7 +51,7 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
     options.User.RequireUniqueEmail = false;
 })
-    .AddEntityFrameworkStores<UserDbContext>()
+    .AddEntityFrameworkStores<AppDbContext>()
     .AddApiEndpoints()
     .AddDefaultTokenProviders();
 

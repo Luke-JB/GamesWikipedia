@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using System.Security.Cryptography.X509Certificates;
 
 namespace gwBackend.Controllers
 {
@@ -26,8 +27,9 @@ namespace gwBackend.Controllers
             return await _context.Games.ToListAsync();
         }
 
+        // Get Game By ID
         [HttpGet("GetGame/{id}")]
-        public async Task<ActionResult<Game>> GetGame(int id)
+        public async Task<ActionResult<GameDto>> GetGame(int id)
         {
             var game = await _context.Games.FindAsync(id); // Get game by id logic
             if (game == null)
@@ -45,7 +47,8 @@ namespace gwBackend.Controllers
                 GameRelease = game.GameRelease,
                 GameCoop = game.GameCoop,
                 GameIndie = game.GameIndie,
-                GamePlatform = game.GamePlatform.Select(p => p.Trim()).ToList(),
+                //GamePlatform = game.GamePlatform.Select(p => p.Trim()).ToList(),
+                GamePlatform = game.GamePlatform,
                 GameDirector = game.GameDirector,
                 GameWriter = game.GameWriter,
                 GameComposer = game.GameComposer,
@@ -53,7 +56,23 @@ namespace gwBackend.Controllers
                 GameInfo = game.GameInfo
             };
 
-            return Ok(game);
+            return Ok(new GameDto
+            {
+                GameId = game.GameId,
+                GameName = game.GameName,
+                GameGenre = game.GameGenre,
+                GameDeveloper = game.GameDeveloper,
+                GamePublisher = game.GamePublisher,
+                GameRelease = game.GameRelease,
+                GameCoop = game.GameCoop,
+                GameIndie = game.GameIndie,
+                GamePlatform = game.GamePlatform,
+                GameDirector = game.GameDirector,
+                GameWriter = game.GameWriter,
+                GameComposer = game.GameComposer,
+                GameDescription = game.GameDescription,
+                GameInfo = game.GameInfo
+            });
         }
 
         // Search for games
@@ -165,6 +184,26 @@ namespace gwBackend.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        // Add to favorites
+        [Authorize]
+        [HttpPost("{gameId}/favorite")]
+        public async Task<IActionResult> AddToFavorites(int gameId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (await _context.UserFavoriteGames.AnyAsync(f => f.UserId == userId && f.GameId == gameId))
+                return BadRequest("Already in favorites.");
+
+            _context.UserFavoriteGames.Add(new UserFavoriteGame
+            {
+                UserId = userId,
+                GameId = gameId
+            });
+
+            await _context.SaveChangesAsync();
+            return Ok("Game added to favorites.");
         }
     }
 }

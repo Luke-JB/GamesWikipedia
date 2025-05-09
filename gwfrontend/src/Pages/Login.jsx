@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import Header from "../Components/Header.jsx";
-import Footer from "../Components/Footer.jsx";
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../api/api';
+import Footer from '../Components/Footer';
 import '../CSS/Login.css';
-import { loginUser } from "../api/api.jsx"; 
-import { useNavigate } from "react-router";
 
 const Login = ({ setIsLoggedIn }) => {
     const [username, setUsername] = useState('');
@@ -29,7 +28,6 @@ const Login = ({ setIsLoggedIn }) => {
 
     return (
         <div>
-            
             <main>
                 <div className="LoginWrapper">
                     <div className="loginTitle">

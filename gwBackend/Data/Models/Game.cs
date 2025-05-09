@@ -18,6 +18,7 @@ namespace gwBackend.Data.Models
         public string GameComposer { get; set; }
         public string GameDescription { get; set; }
         public string GameInfo { get; set; }
+        public ICollection<UserFavoriteGame> FavoritedByUsers { get; set; }
 
         public Game() { }
     }

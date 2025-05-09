@@ -37,6 +37,14 @@
     font-size: 1.2rem;
 }
 
+.favoriteGame {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    margin-right: 80%;
+    border-radius: 8px;
+}
+
 /* Desktop breakpoint */
 @media (min-width: 768px) {
     .profileWrapper {

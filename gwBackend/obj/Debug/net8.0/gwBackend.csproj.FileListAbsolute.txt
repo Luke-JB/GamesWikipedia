@@ -159,7 +159,6 @@ C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\staticw
 C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.gwBackend.props
 C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.gwBackend.props
 C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\staticwebassets.pack.json
-C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\gwBackend.csproj.Up2Date
 C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\gwBackend.dll
 C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\refint\gwBackend.dll
@@ -290,3 +289,13 @@ C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\bin\Debug\net8.0\tr\Micr
 C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\bin\Debug\net8.0\gwBackend.xml
+C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

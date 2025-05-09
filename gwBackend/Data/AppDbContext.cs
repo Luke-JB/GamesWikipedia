@@ -2,10 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using gwBackend.Data;
 using gwBackend.Data.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace gwBackend.Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<User>
+
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -13,6 +16,8 @@ namespace gwBackend.Data
 
         public DbSet<Game> Games { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<UserFavoriteGame> UserFavoriteGames { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -34,6 +39,45 @@ namespace gwBackend.Data
                 .HasConversion(
                 v => string.Join(',', v), // List<string> → string
                 v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(p => p.Trim()).ToList()); // string → List<string>
+
+            builder.Entity<UserFavoriteGame>()
+                .HasKey(uf => new { uf.UserId, uf.GameId });
+
+            builder.Entity<UserFavoriteGame>()
+                .HasOne(uf => uf.User)
+                .WithMany(u => u.FavoriteGames)
+                .HasForeignKey(uf => uf.UserId);
+
+            builder.Entity<UserFavoriteGame>()
+                .HasOne(uf => uf.Game)
+                .WithMany(g => g.FavoritedByUsers)
+                .HasForeignKey(uf => uf.GameId);
+
+
+
+            List<IdentityRole> roles = new()
+            {
+                new IdentityRole()
+                {
+                    Id = "01",
+                    Name = "User",
+                    NormalizedName = "USER"
+                },
+                new IdentityRole()
+                {
+                    Id = "02",
+                    Name = "Moderator",
+                    NormalizedName = "MODERATOR"
+                },
+                new IdentityRole()
+                {
+                    Id = "03",
+                    Name = "Admin",
+                    NormalizedName = "ADMIN"
+                }
+            };
+
+            builder.Entity<IdentityRole>().HasData(roles);
         }
     }
 }

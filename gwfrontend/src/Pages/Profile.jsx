@@ -4,7 +4,6 @@ import Footer from "../Components/Footer";
 import ProfileImg from "../Images/ProfilePicDefault.jpg";
 import { Link } from "react-router-dom";
 import '../CSS/Profile.css';
-import axios from 'axios';
 import { fetchProfile } from "../api/api";
 
 const Profile = ({ setIsLoggedIn }) => {

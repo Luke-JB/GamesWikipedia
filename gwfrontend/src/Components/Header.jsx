@@ -9,18 +9,6 @@ const Header = ({ setActiveComponent, isLoggedIn, setIsLoggedIn }) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const toggleMenu = () => setMenuOpen(!menuOpen);
 
-    /*const handleLogout = async () => {
-        try {
-            await logoutUser({}, { withCredentials: true });//.then(res => {location.reload();}).catch((e) => console.log(e.message))
-            setActiveComponent("welcome");
-            setMenuOpen(false);
-            setIsLoggedIn(false);
-            localStorage.removeItem('authToken');
-        } catch (err) {
-            console.log("Logout Error: ", err.message);
-        }
-    };*/
-
     const handleLogout = async () => {
         try {
             const res = await logoutUser({}, { withCredentials: true });
@@ -39,42 +27,6 @@ const Header = ({ setActiveComponent, isLoggedIn, setIsLoggedIn }) => {
             setIsLoggedIn(true);
         }
     }, []);
-
-    //const isAuthenticated = !!localStorage.getItem("authToken");
-
-    /*function UserRoles() {
-        const [userRoles, setUserRoles] = useState([]);
-
-        useEffect(() => {
-            const fetchUserRoles = async () => {
-                try {
-                    const authToken = localStorage.getItem("authToken");
-                    const response = await axios.get("https://localhost:55318/api/User/UserInfo", {
-                        headers: {
-                            Authorization: 'Bearer ${authtoken}',
-                        },
-                    });
-                    setUserRoles(response.data.roles);
-                } catch (error) {
-                    console.error("Error fetching user roles: ", error);
-                }
-            };
-
-            fetchUserRoles();
-        }, []);
-    }
-
-    useEffect(() => {
-        fetch("https://localhost:52188/gwBackend/api/userinfo", {
-            headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }
-        })
-        .then(response => response.json())
-        .then(data => setUserRoles(data.roles));
-    }, []); 
-    
-    {userRoles.includes("User") && <li><Link to="/" onClick={() => { setActiveComponent("welcome"); setMenuOpen(false); }}>Sign Out</Link></li>}
-    
-    */
 
     const handleNavClick = () => {
         setActiveComponent("welcome");

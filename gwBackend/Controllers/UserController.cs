@@ -18,11 +18,11 @@ namespace gwBackend.Controllers
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly UserDbContext _context;
+        private readonly AppDbContext _context;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
 
-        public UserController(UserDbContext context, UserManager<User> userManager, SignInManager<User> signInManager)
+        public UserController(AppDbContext context, UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _context = context;
             _userManager = userManager;
@@ -48,15 +48,15 @@ namespace gwBackend.Controllers
                     Name = register.Name
                 };
 
-                var User = await _userManager.CreateAsync(user, register.Password);
-                if (User.Succeeded)
+                var result = await _userManager.CreateAsync(user, register.Password);
+                if (result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(user, "User");
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return Ok();
+                    return Ok(user);
                 }
 
-                foreach (var error in User.Errors)
+                foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
@@ -84,14 +84,12 @@ namespace gwBackend.Controllers
             }
 
             var user = await _userManager.FindByNameAsync(login.UserName); //?? await _userManager.FindByEmailAsync(login.UserName);
-            
-            if (User == null)
+            if (user == null)
             {
                 return Unauthorized();
             }
 
             var result = await _signInManager.PasswordSignInAsync(user, login.Password, login.RememberMe, lockoutOnFailure: false);
-
             if (result.Succeeded)
             {
                 return Ok();
@@ -182,10 +180,37 @@ namespace gwBackend.Controllers
 
             return Ok(new
             {
-                user.UserName,
-                user.Email,
-                Roles = roles
+                //user.UserName,
+                //user.Email,
+                //Roles = roles
+                userName = user.UserName,
+                email = user.Email,
+                roles = roles
             });
+        }
+        [Authorize]
+        [HttpGet("Favorites")]
+        public async Task<IActionResult> GetFavorites()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var favorites = await _context.UserFavoriteGames
+                .Where(f => f.UserId == userId)
+                .Include(f => f.Game)
+                .Select(f => new
+                {
+                    f.Game.GameId,
+                    f.Game.GameName,
+                    f.Game.GameGenre
+                })
+                .ToListAsync();
+
+            return Ok(favorites);
+        }
+        [HttpGet]
+        public IActionResult GetUsers()
+        {
+            var users = _userManager.Users.ToList();
+            return Ok(users); // Ensure you're returning data here
         }
     }
 }

@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import Header from "../Components/Header";
+import { addGame } from "../api/api";
 import Footer from "../Components/Footer";
 import '../CSS/GameAdd.css';
-import { addGame } from "../api/api";
-import { Navigate } from "react-router";
 
 const GameAdd = ({ isLoggedIn }) => {
     const [formData, setFormData] = useState({
@@ -76,7 +74,6 @@ const GameAdd = ({ isLoggedIn }) => {
     
     return (
         <div>
-            
             <main>
                 <div className="gameAddWrapper">
                     <div className="gameAddTitle">

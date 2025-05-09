@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using System.Text.Json;
 
 namespace gwBackend.Controllers
 {
@@ -26,22 +27,53 @@ namespace gwBackend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Comment>>> GetCommentsByGame([FromRoute] int postId)
         {
-            var comments = await _context.Comments
-                .Where(c => c.GameId == postId)
-                .OrderByDescending(c => c.DateTime)
-                .ToListAsync();
+            try
+            {
+                Response.Headers.Add("Access-Control-Allow-Origin", "*"); // Temporary fix to test CORS
 
-            return Ok(comments);
+                var comments = await _context.Comments
+                    .Where(c => c.GameId == postId)
+                    .Include(c => c.User)
+                    .OrderByDescending(c => c.DateTime)
+                    .ToListAsync();
+
+                try
+                {
+                    var json = JsonSerializer.Serialize(comments);
+                    Console.WriteLine(json);  // Log serialized data
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Serialization error: {ex.Message}");
+                }
+
+                return Ok(comments);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching comments: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
         }
 
         // Add Comments
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public async Task<ActionResult<Comment>> AddComment([FromRoute] int postId, [FromBody] CommentDto commentDto)
         {
             try
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (string.IsNullOrEmpty(userId))
+                    return Unauthorized("User not authenticated");
+
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user == null)
+                {
+                    Console.WriteLine("User not found in DB");
+                    return Unauthorized("User not found.");
+                }
+
                 var comment = new Comment
                 {
                     Text = commentDto.Text,
@@ -53,7 +85,9 @@ namespace gwBackend.Controllers
                 _context.Comments.Add(comment);
                 await _context.SaveChangesAsync();
 
-                return CreatedAtAction(nameof(GetCommentsByGame), new { gameId = postId }, comment);
+                //return CreatedAtAction(nameof(GetCommentsByGame), new { gameId = postId }, comment);
+                return Created($"/api/posts/{comment.GameId}/comments/{comment.CommentId}", comment);
+
             }
             catch (Exception ex)
             {
@@ -77,19 +111,25 @@ namespace gwBackend.Controllers
             [HttpPut("{commentId}")]
             public async Task<ActionResult<Comment>> UpdateComment(int commentId, [FromBody] CommentDto commentDto)
             {
-                var existingText = await _context.Comments.FindAsync(commentId);
-                _context.Entry(commentId).State = EntityState.Modified;
-                await _context.SaveChangesAsync();
+                var comment = await _context.Comments.FindAsync(commentId);
+                if (comment == null) return NotFound();
 
+                comment.Text = commentDto.Text;
+
+                await _context.SaveChangesAsync();
                 return NoContent();
+
             }
 
             // Delete Comments
+            [Authorize(Roles = "Moderator")]
             [HttpDelete("{commentId}")]
             //[Authorize(Roles = "Moderator")]
             public async Task<ActionResult<Comment>> DeleteComment(int commentId)
             {
                 var comment = await _context.Comments.FindAsync(commentId);
+                if (comment == null) return NotFound();
+
                 _context.Comments.Remove(comment);
                 await _context.SaveChangesAsync();
 

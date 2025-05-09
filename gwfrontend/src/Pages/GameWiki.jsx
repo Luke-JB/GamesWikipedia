@@ -2,16 +2,18 @@ import React, { useEffect, useState } from "react";
 import Header from "../Components/Header.jsx";
 import Footer from "../Components/Footer.jsx";
 import BoxArt from "../Images/Elden_Ring_Box_art.jpg";
+import SampleCover from "../Images/SampleCover.png";
 import ProfilePicPlaceholder from "../Images/ProfilePicDefault.jpg";
 import '../CSS/GameWiki.css';
 import { Link, useNavigate, useParams } from "react-router";
 import { addComment, deleteComment, getComments, updateComment, getGameById } from "../api/api.jsx";
+import axios from "axios";
 
 // 10.65 x 6.31 inches 
 // 639 x 378.59
 
 const GameWiki = ({ user }) => {
-    console.log("User object:", user);
+    //console.log("User object:", user);
     const { gameId } = useParams();
     const postId = gameId;
     const [gameData, setGameData] = useState({})
@@ -19,7 +21,7 @@ const GameWiki = ({ user }) => {
     const [newComment, setNewComment] = useState("");
     const [updateContent, setUpdateContent] = useState("");
     const navigate = useNavigate();
-
+    
     useEffect(() => {
         if (!gameId) {
             navigate("/Search");
@@ -44,30 +46,14 @@ const GameWiki = ({ user }) => {
     }, [postId]);
 
     // Add Comments.
-    /*const handleAddComment = (e) => {
-        e.preventDefault();
-        console.log("Submitting comment...");
-        console.log("Adding comment to postId:", postId);
-        console.log("User token:", user?.token);
-        console.log("New comment:", newComment);
-        if (!newComment.trim() || !user || !user.token) return;
-        addComment(postId, newComment, user.token)
-        .then((response) => {
-            setComments((prev) => [...prev, response.data]);
-            setNewComment("");
-        })
-        .catch((e) => console.log(e.message));
-    };*/
-
     const handleAddComment = async (e) => {
         e.preventDefault();
         console.log("Clicked add comment");
         console.log("Adding comment to postId:", postId);
-        console.log("User token:", user?.token);
         console.log("New comment:", newComment);
-    
+
         try {
-            const res = await addComment(postId, newComment, user.token);
+            const res = await addComment(postId, newComment);
             console.log("Comment added:", res.data);
             setComments((prev) => [...prev, res.data]);
             setNewComment("");
@@ -76,10 +62,9 @@ const GameWiki = ({ user }) => {
         }
     };
 
-
     // Delete Comments.
     const handleDeleteComment = (commentId) => {
-        deleteComment(commentId, user.token)
+        deleteComment(commentId)
         .then(() => {
             setComments((prev) => prev.filter((c) => c.id !== commentId));
         })
@@ -88,8 +73,23 @@ const GameWiki = ({ user }) => {
 
     //Update Comments
     const handleUpdateComment = (commentId) => {
-        updateComment(commentId, updateContent, user.token)
-    }
+        updateComment(commentId, updateContent)
+        .then(() => {
+            setComments((prev) => prev.map((c) => (c.id === commentId ? { ...c, text: updateContent } : c)));
+        })
+        .catch((e) => console.log(e.message));
+    };
+
+    const handleAddToFavorites = async () => {
+        try {
+            await axios.post(`http://localhost:8080/api/games/${postId}/favorite`, {}, {
+                withCredentials: true
+            });
+            alert("Game added to favorites!");
+        } catch (error) {
+            console.error("Failed to add to favorites", error);
+        }
+    };
     
     return (
         <div>
@@ -97,7 +97,8 @@ const GameWiki = ({ user }) => {
                 <div className="gameWikiWrapper">
                     <div className="gameTitleWrapper">
                         <div className="gameEditButtonWrapper">
-                            <Link to="/GameEdit" className="button">Edit Game Wiki</Link>
+                            <Link to="/GameEdit" className="buttonWiki">Edit Game Wiki</Link>
+                            <button className="buttonWiki" onClick={handleAddToFavorites}>Add to Favorites</button>
                         </div>
                         <div className="gameTitle">
                             <h2>{gameData.gameName}</h2>
@@ -127,7 +128,7 @@ const GameWiki = ({ user }) => {
                                     <li>Co-op: {gameData.gameCoop}</li>
                                 </ul>
                                 <div className="gamePic">
-                                    <img src={BoxArt} className="boxArt" alt="boxArt"></img>
+                                    <img src={SampleCover} className="boxArt" alt="boxArt"></img>
                                 </div>
                             </div>
                         </div>
@@ -158,23 +159,22 @@ const GameWiki = ({ user }) => {
                             comments.map(comment => (
                                 <div key={comment.id} className="gameCommentsTop">
                                     <img src={ProfilePicPlaceholder} className="ProfilePic" alt="ProfilePic" />
-                                    <p>{comment.username || "Profile Name"}</p>
-                                    <p>{comment.text}</p>
+                                    <div className="commentText">
+                                        <p>{comment.username || "Profile Name"}</p>
+                                        <p>{comment.text}</p>
+                                    </div>
                                     {user?.Roles?.includes("Moderator") && (
                                         <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
                                     )}
                                 </div>
                             )))}
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sollicitudin erat nisl, id euismod tortor bibendum et. Orci varius natoque penatibus et 
-                            magnis dis parturient montes, nascetur ridiculus mus. Curabitur et elit dolor. In hac habitasse platea dictumst. Cras vitae nisl vitae nibh elementum
-                            laoreet eget sit amet dui. Morbi sit amet purus eget dui fermentum volutpat. Suspendisse sit amet enim ante.</p>
                         </div>
                         <div className="gameReferences">
                         <h3>References</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sollicitudin erat nisl, id euismod tortor bibendum et. Orci varius 
                         natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur et elit dolor. In hac habitasse platea 
                         dictumst. Cras vitae nisl vitae nibh elementum laoreet eget sit amet.</p>
-                    </div>
+                        </div>
                     </div>
                 </div>
             </main>

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import Header from "../Components/Header.jsx";
+import { useNavigate } from "react-router";
+import { registerUser } from "../api/api.jsx"; 
 import Footer from "../Components/Footer.jsx";
 import '../CSS/Register.css';
-import { registerUser } from "../api/api.jsx"; 
-import { useNavigate } from "react-router";
 
 const Register = () => {
     const navigate = useNavigate();
@@ -36,7 +35,6 @@ const Register = () => {
 
     return (
         <div>
-            
             <main>
                 <div className="regWrapper">
                     <div className="regTitle">
@@ -45,15 +43,15 @@ const Register = () => {
                     <div className="regFormWrapper">
                         <form className="regForm" onSubmit={handleSubmit}>
                             <label htmlFor="name">Name: </label>
-                            <input type="text" id="name" name="name" value={formData.name} onChange={handleChange}/>
+                            <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} data-testid="name-input"/>
                             <label htmlFor="username">Username: </label>
-                            <input type="text" id="username" name="username" value={formData.username} onChange={handleChange}/>
+                            <input type="text" id="username" name="username" value={formData.username} onChange={handleChange} data-testid="username-input"/>
                             <label htmlFor="email">Email: </label>
-                            <input type="email" id="email" name="email" value={formData.email} onChange={handleChange}/>
+                            <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} data-testid="email-input"/>
                             <label htmlFor="password">Password: </label>
-                            <input type="password" id="password" name="password" value={formData.password} onChange={handleChange}/>
+                            <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} data-testid="password-input"/>
                             <label htmlFor="confirmPassword">Confirm Password: </label>
-                            <input type="password" id="confirmPassword" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange}/>
+                            <input type="password" id="confirmPassword" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} data-testid="confirm-password-input"/>
                             <input type="submit" value="Submit"/>
                         </form>
                     </div>
