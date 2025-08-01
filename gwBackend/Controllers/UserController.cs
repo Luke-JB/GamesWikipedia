@@ -61,14 +61,10 @@ namespace gwBackend.Controllers
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
 
-                //using StringContent connJson = new(JsonSerializer.Serialize(connectionDto), Encoding.UTF8, "application/json");
-                //HttpClient client = new HttpClient();
-                //var test = "";
                 return BadRequest(ModelState);
             }
             catch (Exception ex)
             {
-                //return StatusCode(500, ex.ToString());
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
@@ -210,7 +206,7 @@ namespace gwBackend.Controllers
         public IActionResult GetUsers()
         {
             var users = _userManager.Users.ToList();
-            return Ok(users); // Ensure you're returning data here
+            return Ok(users); // Ensure data is returning here
         }
     }
 }

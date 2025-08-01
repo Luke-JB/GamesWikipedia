@@ -124,7 +124,6 @@ namespace gwBackend.Controllers
             // Delete Comments
             [Authorize(Roles = "Moderator")]
             [HttpDelete("{commentId}")]
-            //[Authorize(Roles = "Moderator")]
             public async Task<ActionResult<Comment>> DeleteComment(int commentId)
             {
                 var comment = await _context.Comments.FindAsync(commentId);

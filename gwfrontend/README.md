@@ -10,3 +10,5 @@ Currently, two official plugins are available:
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+To run the project. First run 'npm install' to install all node modules. Skip to next step, if this doesnt work you may also need to run 'npm install react-router@7.6.0', 'npm install react-router-dom@7.6.0', 'npm install axios@1.9.0', 'npm install prop-types@15.8.1'. Then run 'npm run dev' and ctrl + click on the local host link.
