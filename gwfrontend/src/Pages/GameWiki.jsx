@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "../Components/Header.jsx";
 import Footer from "../Components/Footer.jsx";
-import BoxArt from "../Images/Elden_Ring_Box_art.jpg";
+//import BoxArt from "../Images/Elden_Ring_Box_art.jpg";
 import SampleCover from "../Images/SampleCover.png";
 import ProfilePicPlaceholder from "../Images/ProfilePicDefault.jpg";
 import '../CSS/GameWiki.css';

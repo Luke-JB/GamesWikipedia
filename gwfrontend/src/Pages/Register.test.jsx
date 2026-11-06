@@ -1,6 +1,6 @@
 import { render, fireEvent, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
-import { MemoryRouter, useNavigate } from 'react-router-dom';
+import { MemoryRouter, useNavigate } from 'react-router';
 import Register from '../Pages/Register'; // Adjust the import path as per your project structure
 import { registerUser } from '../api/api'; // Adjust as per your project structure
 

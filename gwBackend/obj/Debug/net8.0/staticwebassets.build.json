@@ -1,12 +1,1 @@
-{
-  "Version": 1,
-  "Hash": "Q9Md5/X9Z7ECPo3WN3INBHtH+ip6rTTZdkvfjEaPazc=",
-  "Source": "gwBackend",
-  "BasePath": "_content/gwBackend",
-  "Mode": "Default",
-  "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
-}
+{"Version":1,"Hash":"hp2QY1DCAlppuxCZ0qbHiIBZW6wrt5mqO9hYQFK8zDM=","Source":"gwBackend","BasePath":"/","Mode":"Root","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}

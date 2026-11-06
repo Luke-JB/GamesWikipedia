@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import ProfileImg from "../Images/ProfilePicDefault.jpg";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import '../CSS/Profile.css';
 import { fetchProfile } from "../api/api";
 

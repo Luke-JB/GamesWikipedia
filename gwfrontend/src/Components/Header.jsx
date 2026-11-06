@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import '../CSS/Header.css';
 import logo from "../Images/LogoDraft1.png";
 import { logoutUser } from "../api/api";

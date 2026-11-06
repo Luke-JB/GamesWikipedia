@@ -153,12 +153,6 @@ C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\scopedc
 C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\staticwebassets\msbuild.gwBackend.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\staticwebassets\msbuild.gwBackend.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\staticwebassets\msbuild.build.gwBackend.props
-C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.gwBackend.props
-C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.gwBackend.props
-C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\gwBackend.csproj.Up2Date
 C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\gwBackend.dll
 C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\refint\gwBackend.dll
@@ -299,3 +293,9 @@ C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\bin\Debug\net8.0\Microso
 C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.InMemory.dll
 C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\rjimswa.dswa.cache.json
+C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\staticwebassets.build.json.cache
+C:\Users\Luke\Documents\GitHub\GamesWikipedia\gwBackend\obj\Debug\net8.0\swae.build.ex.cache
